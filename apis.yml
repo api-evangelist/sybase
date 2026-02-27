@@ -1,0 +1,71 @@
+name: Sybase APIs
+description: A collection of APIs and resources for Sybase database systems
+image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
+tags:
+- Database
+- SQL
+- Enterprise
+- SAP
+created: '2024'
+modified: '2024'
+url: https://www.sap.com/products/sybase.html
+apis:
+- name: Sybase ASE REST API
+  description: REST API for Sybase Adaptive Server Enterprise administration and monitoring
+  image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
+  humanURL: https://help.sap.com/docs/SAP_ASE
+  baseURL: https://api.sybase.example.com/ase/v1
+  tags:
+  - Database Management
+  - Monitoring
+  - Administration
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_ASE/REST_API
+  - type: OpenAPI
+    url: https://api.sybase.example.com/ase/v1/openapi.json
+  - type: Authentication
+    url: https://help.sap.com/docs/SAP_ASE/authentication
+- name: Sybase IQ REST API
+  description: REST API for SAP IQ (formerly Sybase IQ) analytics database
+  image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
+  humanURL: https://help.sap.com/docs/SAP_IQ
+  baseURL: https://api.sybase.example.com/iq/v1
+  tags:
+  - Analytics
+  - Data Warehouse
+  - Big Data
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_IQ/REST_API
+  - type: OpenAPI
+    url: https://api.sybase.example.com/iq/v1/openapi.json
+- name: SAP Mobile Platform API
+  description: APIs for Sybase mobile application development and management
+  image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
+  humanURL: https://help.sap.com/docs/SAP_MOBILE_PLATFORM
+  baseURL: https://api.sybase.example.com/mobile/v1
+  tags:
+  - Mobile
+  - Application Development
+  - Synchronization
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_MOBILE_PLATFORM/API
+  - type: SDK
+    url: https://help.sap.com/docs/SAP_MOBILE_PLATFORM/SDK
+common:
+- type: Portal
+  url: https://support.sap.com/sybase
+- type: Support
+  url: https://support.sap.com/en/product/database.html
+- type: Community
+  url: https://community.sap.com/topics/sybase
+- type: Downloads
+  url: https://support.sap.com/swdc
+- type: Blog
+  url: https://blogs.sap.com/tags/products-sybase/
+maintainers:
+- name: SAP
+  email: support@sap.com
+  url: https://www.sap.com
