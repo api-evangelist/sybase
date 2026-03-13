@@ -1,0 +1,1092 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST API
+  description: >-
+    REST API for SAP Adaptive Server Enterprise (ASE) administration and
+    monitoring. Provides programmatic access to server configuration, database
+    management, performance monitoring, user administration, and backup
+    operations for SAP ASE database instances. SAP ASE is a high-performance
+    relational database management system designed for transaction-based
+    enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE
+servers:
+  - url: https://{server}:{port}/ase/v1
+    description: SAP ASE REST API Server
+    variables:
+      server:
+        default: localhost
+        description: SAP ASE server hostname
+      port:
+        default: '8443'
+        description: HTTPS port for the REST API
+tags:
+  - name: Servers
+    description: >-
+      Operations for retrieving server information, status, and configuration
+      details for SAP ASE instances.
+  - name: Databases
+    description: >-
+      Operations for managing databases within an SAP ASE server including
+      creation, configuration, and status monitoring.
+  - name: Performance
+    description: >-
+      Operations for monitoring server performance metrics including cache
+      statistics, lock activity, and resource utilization.
+  - name: Users
+    description: >-
+      Operations for managing server logins and database users including
+      role assignments and permission management.
+  - name: Backups
+    description: >-
+      Operations for managing database backup and recovery operations
+      including scheduling and status monitoring.
+  - name: Devices
+    description: >-
+      Operations for managing database devices and disk storage resources
+      used by SAP ASE.
+  - name: Configuration
+    description: >-
+      Operations for viewing and modifying SAP ASE server configuration
+      parameters via sp_configure equivalents.
+security:
+  - basicAuth: []
+  - bearerAuth: []
+paths:
+  /servers:
+    get:
+      operationId: listServers
+      summary: List ASE servers
+      description: >-
+        Retrieves a list of SAP ASE server instances available for
+        administration and monitoring through this API endpoint.
+      tags:
+        - Servers
+      responses:
+        '200':
+          description: Successful retrieval of server list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  servers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}:
+    get:
+      operationId: getServer
+      summary: Get server details
+      description: >-
+        Retrieves detailed information about a specific SAP ASE server
+        instance including version, status, uptime, and configuration summary.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of server details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/status:
+    get:
+      operationId: getServerStatus
+      summary: Get server status
+      description: >-
+        Retrieves the current operational status of a SAP ASE server including
+        uptime, active connections, CPU utilization, and memory usage metrics.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of server status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStatus'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/databases:
+    get:
+      operationId: listDatabases
+      summary: List databases
+      description: >-
+        Retrieves a list of all databases on the specified SAP ASE server
+        including their status, size, and owner information.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of database list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  databases:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Database'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createDatabase
+      summary: Create a database
+      description: >-
+        Creates a new database on the specified SAP ASE server with the
+        provided configuration parameters including name, size, and device
+        allocation.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatabaseCreateRequest'
+      responses:
+        '201':
+          description: Database created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/databases/{databaseName}:
+    get:
+      operationId: getDatabase
+      summary: Get database details
+      description: >-
+        Retrieves detailed information about a specific database including
+        size, space usage, configuration options, and segment information.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Successful retrieval of database details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified database was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/performance:
+    get:
+      operationId: getPerformanceMetrics
+      summary: Get performance metrics
+      description: >-
+        Retrieves current performance metrics for the SAP ASE server including
+        CPU utilization, disk I/O statistics, cache hit ratios, lock activity,
+        and network throughput. Equivalent to data available from sp_sysmon.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+        - name: interval
+          in: query
+          description: >-
+            The sampling interval in seconds for performance data collection.
+          required: false
+          schema:
+            type: integer
+            default: 60
+            minimum: 10
+            maximum: 3600
+      responses:
+        '200':
+          description: Successful retrieval of performance metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/performance/cache:
+    get:
+      operationId: getCacheMetrics
+      summary: Get cache performance metrics
+      description: >-
+        Retrieves detailed cache performance statistics for the SAP ASE server
+        including data cache hit ratios, procedure cache utilization, and
+        buffer pool statistics for each named cache.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of cache metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/performance/locks:
+    get:
+      operationId: getLockMetrics
+      summary: Get lock activity metrics
+      description: >-
+        Retrieves lock management statistics including lock contention,
+        deadlock occurrences, lock wait times, and lock promotion activity
+        for the SAP ASE server.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of lock metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/logins:
+    get:
+      operationId: listLogins
+      summary: List server logins
+      description: >-
+        Retrieves a list of all server-level logins configured on the SAP ASE
+        server including their roles, default databases, and status.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of login list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logins:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Login'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createLogin
+      summary: Create a server login
+      description: >-
+        Creates a new server-level login on the SAP ASE server with the
+        specified credentials, default database, and role assignments.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginCreateRequest'
+      responses:
+        '201':
+          description: Login created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/backups:
+    get:
+      operationId: listBackups
+      summary: List backup history
+      description: >-
+        Retrieves the backup history for the specified SAP ASE server
+        including completed, in-progress, and scheduled backup operations.
+      tags:
+        - Backups
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+        - name: databaseName
+          in: query
+          description: >-
+            Filter backup history by database name.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful retrieval of backup history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  backups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Backup'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createBackup
+      summary: Initiate a database backup
+      description: >-
+        Initiates a new backup operation for the specified database on the
+        SAP ASE server. Supports full database dumps, transaction log dumps,
+        and incremental backups.
+      tags:
+        - Backups
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackupCreateRequest'
+      responses:
+        '202':
+          description: Backup operation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/devices:
+    get:
+      operationId: listDevices
+      summary: List database devices
+      description: >-
+        Retrieves a list of all database devices configured on the SAP ASE
+        server including their physical paths, sizes, and usage information.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of device list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/configuration:
+    get:
+      operationId: getConfiguration
+      summary: Get server configuration
+      description: >-
+        Retrieves the current server configuration parameters for the SAP ASE
+        instance. Returns settings equivalent to those available through
+        sp_configure, organized by configuration groups.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+        - name: group
+          in: query
+          description: >-
+            Filter configuration parameters by group name.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful retrieval of server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateConfiguration
+      summary: Update server configuration
+      description: >-
+        Updates one or more server configuration parameters on the SAP ASE
+        instance. Some parameters require a server restart to take effect.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigurationUpdateRequest'
+      responses:
+        '200':
+          description: Configuration updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+        '400':
+          description: Invalid configuration parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Bearer token authentication for API access.
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: >-
+        The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: >-
+        The name of the database within the SAP ASE server.
+      schema:
+        type: string
+  schemas:
+    Server:
+      type: object
+      description: >-
+        Represents a SAP ASE server instance with its configuration and
+        status information.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the server instance.
+        name:
+          type: string
+          description: The configured name of the SAP ASE server.
+        version:
+          type: string
+          description: The SAP ASE version string.
+        status:
+          type: string
+          description: Current operational status of the server.
+          enum:
+            - running
+            - stopped
+            - starting
+            - shutting_down
+            - maintenance
+        host:
+          type: string
+          description: The hostname where the server is running.
+        port:
+          type: integer
+          description: The network port the server is listening on.
+        pageSize:
+          type: integer
+          description: The logical page size in bytes configured for this server.
+          enum:
+            - 2048
+            - 4096
+            - 8192
+            - 16384
+        startTime:
+          type: string
+          format: date-time
+          description: The timestamp when the server was last started.
+        platformDescription:
+          type: string
+          description: The operating system platform description.
+    ServerStatus:
+      type: object
+      description: >-
+        Current operational status and resource utilization metrics for a
+        SAP ASE server.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        status:
+          type: string
+          description: Current operational status.
+        uptime:
+          type: integer
+          description: Server uptime in seconds since last restart.
+        activeConnections:
+          type: integer
+          description: Number of currently active user connections.
+        maxConnections:
+          type: integer
+          description: Maximum number of configured user connections.
+        cpuUtilization:
+          type: number
+          format: double
+          description: Current CPU utilization percentage.
+        memoryUsageMB:
+          type: number
+          format: double
+          description: Current memory usage in megabytes.
+        totalMemoryMB:
+          type: number
+          format: double
+          description: Total memory allocated to the server in megabytes.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when the status was captured.
+    Database:
+      type: object
+      description: >-
+        Represents a database within a SAP ASE server including its
+        configuration and space usage.
+      properties:
+        name:
+          type: string
+          description: The name of the database.
+        dbId:
+          type: integer
+          description: The numeric database identifier.
+        owner:
+          type: string
+          description: The login name of the database owner.
+        status:
+          type: string
+          description: Current status of the database.
+          enum:
+            - online
+            - offline
+            - suspect
+            - loading
+            - recovering
+        sizeMB:
+          type: number
+          format: double
+          description: Total allocated size of the database in megabytes.
+        dataUsedMB:
+          type: number
+          format: double
+          description: Space used by data in megabytes.
+        logUsedMB:
+          type: number
+          format: double
+          description: Space used by the transaction log in megabytes.
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the database was created.
+    DatabaseCreateRequest:
+      type: object
+      description: >-
+        Request body for creating a new database on the SAP ASE server.
+      required:
+        - name
+        - deviceName
+        - sizeMB
+      properties:
+        name:
+          type: string
+          description: The name for the new database.
+          maxLength: 30
+        deviceName:
+          type: string
+          description: The name of the database device for data storage.
+        sizeMB:
+          type: number
+          format: double
+          description: The initial size of the database in megabytes.
+          minimum: 2
+        logDeviceName:
+          type: string
+          description: The name of the device for the transaction log.
+        logSizeMB:
+          type: number
+          format: double
+          description: The initial size of the transaction log in megabytes.
+    PerformanceMetrics:
+      type: object
+      description: >-
+        Comprehensive performance metrics for a SAP ASE server including
+        CPU, memory, disk, and network statistics.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        cpuUtilization:
+          type: number
+          format: double
+          description: Overall CPU utilization percentage.
+        ioReadsPerSec:
+          type: number
+          format: double
+          description: Disk read operations per second.
+        ioWritesPerSec:
+          type: number
+          format: double
+          description: Disk write operations per second.
+        networkBytesSentPerSec:
+          type: number
+          format: double
+          description: Network bytes sent per second.
+        networkBytesReceivedPerSec:
+          type: number
+          format: double
+          description: Network bytes received per second.
+        transactionsPerSec:
+          type: number
+          format: double
+          description: Committed transactions per second.
+        activeProcesses:
+          type: integer
+          description: Number of currently active server processes.
+        blockedProcesses:
+          type: integer
+          description: Number of processes currently waiting on locks.
+    CacheMetrics:
+      type: object
+      description: >-
+        Data cache and procedure cache performance statistics for the
+        SAP ASE server.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        dataCacheHitRatio:
+          type: number
+          format: double
+          description: Percentage of data cache hits versus total requests.
+        procedureCacheHitRatio:
+          type: number
+          format: double
+          description: Percentage of procedure cache hits versus total requests.
+        namedCaches:
+          type: array
+          description: Performance metrics for each named data cache.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the data cache.
+              hitRatio:
+                type: number
+                format: double
+                description: Cache hit ratio for this named cache.
+              sizeMB:
+                type: number
+                format: double
+                description: Total size of this named cache in megabytes.
+              usedMB:
+                type: number
+                format: double
+                description: Space currently used in this cache in megabytes.
+    LockMetrics:
+      type: object
+      description: >-
+        Lock management statistics for the SAP ASE server including
+        contention and deadlock information.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        totalLockRequests:
+          type: integer
+          description: Total number of lock requests since last reset.
+        lockWaits:
+          type: integer
+          description: Number of times a task had to wait for a lock.
+        deadlocks:
+          type: integer
+          description: Number of deadlock occurrences.
+        lockPromotions:
+          type: integer
+          description: Number of lock escalation events.
+        avgLockWaitTimeMs:
+          type: number
+          format: double
+          description: Average lock wait time in milliseconds.
+    Login:
+      type: object
+      description: >-
+        Represents a server-level login account on the SAP ASE server.
+      properties:
+        name:
+          type: string
+          description: The login name.
+        suid:
+          type: integer
+          description: The server user identifier.
+        defaultDatabase:
+          type: string
+          description: The default database for this login.
+        status:
+          type: string
+          description: Current status of the login.
+          enum:
+            - active
+            - locked
+            - suspended
+        roles:
+          type: array
+          description: List of server roles assigned to this login.
+          items:
+            type: string
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the login was created.
+    LoginCreateRequest:
+      type: object
+      description: >-
+        Request body for creating a new server login.
+      required:
+        - name
+        - password
+      properties:
+        name:
+          type: string
+          description: The login name to create.
+          maxLength: 30
+        password:
+          type: string
+          description: The password for the new login.
+          format: password
+        defaultDatabase:
+          type: string
+          description: The default database to assign.
+        roles:
+          type: array
+          description: List of server roles to assign.
+          items:
+            type: string
+    Backup:
+      type: object
+      description: >-
+        Represents a database backup operation on the SAP ASE server.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the backup operation.
+        databaseName:
+          type: string
+          description: The name of the database that was backed up.
+        type:
+          type: string
+          description: The type of backup operation.
+          enum:
+            - full
+            - transaction_log
+            - incremental
+        status:
+          type: string
+          description: Current status of the backup operation.
+          enum:
+            - completed
+            - in_progress
+            - failed
+            - scheduled
+        startTime:
+          type: string
+          format: date-time
+          description: Timestamp when the backup started.
+        endTime:
+          type: string
+          format: date-time
+          description: Timestamp when the backup completed.
+        sizeMB:
+          type: number
+          format: double
+          description: Size of the backup in megabytes.
+        deviceName:
+          type: string
+          description: The backup device or file path used.
+    BackupCreateRequest:
+      type: object
+      description: >-
+        Request body for initiating a database backup operation.
+      required:
+        - databaseName
+        - type
+        - deviceName
+      properties:
+        databaseName:
+          type: string
+          description: The name of the database to back up.
+        type:
+          type: string
+          description: The type of backup to perform.
+          enum:
+            - full
+            - transaction_log
+            - incremental
+        deviceName:
+          type: string
+          description: The backup device or file path to write to.
+        compress:
+          type: boolean
+          description: Whether to compress the backup.
+          default: false
+    Device:
+      type: object
+      description: >-
+        Represents a database device (disk resource) on the SAP ASE server.
+      properties:
+        name:
+          type: string
+          description: The logical name of the device.
+        physicalName:
+          type: string
+          description: The physical file path of the device.
+        sizeMB:
+          type: number
+          format: double
+          description: Total size of the device in megabytes.
+        usedMB:
+          type: number
+          format: double
+          description: Space currently used on the device in megabytes.
+        status:
+          type: string
+          description: Current status of the device.
+          enum:
+            - online
+            - offline
+        deviceNumber:
+          type: integer
+          description: The numeric device identifier assigned by the server.
+    Configuration:
+      type: object
+      description: >-
+        Server configuration parameters organized by group, equivalent to
+        sp_configure output.
+      properties:
+        groups:
+          type: array
+          description: Configuration parameter groups.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The configuration group name.
+              parameters:
+                type: array
+                description: Parameters within this group.
+                items:
+                  $ref: '#/components/schemas/ConfigParameter'
+    ConfigParameter:
+      type: object
+      description: >-
+        A single server configuration parameter.
+      properties:
+        name:
+          type: string
+          description: The name of the configuration parameter.
+        runValue:
+          type: string
+          description: The current running value.
+        configValue:
+          type: string
+          description: The configured value that takes effect on restart.
+        defaultValue:
+          type: string
+          description: The default value for this parameter.
+        minimumValue:
+          type: string
+          description: The minimum allowed value.
+        maximumValue:
+          type: string
+          description: The maximum allowed value.
+        requiresRestart:
+          type: boolean
+          description: Whether changing this parameter requires a server restart.
+    ConfigurationUpdateRequest:
+      type: object
+      description: >-
+        Request body for updating server configuration parameters.
+      required:
+        - parameters
+      properties:
+        parameters:
+          type: array
+          description: List of configuration parameters to update.
+          items:
+            type: object
+            required:
+              - name
+              - value
+            properties:
+              name:
+                type: string
+                description: The configuration parameter name.
+              value:
+                type: string
+                description: The new value to set.
+    Error:
+      type: object
+      description: >-
+        Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
