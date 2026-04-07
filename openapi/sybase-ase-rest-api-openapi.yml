@@ -27,34 +27,34 @@ servers:
         default: '8443'
         description: HTTPS port for the REST API
 tags:
-  - name: Servers
-    description: >-
-      Operations for retrieving server information, status, and configuration
-      details for SAP ASE instances.
-  - name: Databases
-    description: >-
-      Operations for managing databases within an SAP ASE server including
-      creation, configuration, and status monitoring.
-  - name: Performance
-    description: >-
-      Operations for monitoring server performance metrics including cache
-      statistics, lock activity, and resource utilization.
-  - name: Users
-    description: >-
-      Operations for managing server logins and database users including
-      role assignments and permission management.
   - name: Backups
     description: >-
       Operations for managing database backup and recovery operations
       including scheduling and status monitoring.
-  - name: Devices
-    description: >-
-      Operations for managing database devices and disk storage resources
-      used by SAP ASE.
   - name: Configuration
     description: >-
       Operations for viewing and modifying SAP ASE server configuration
       parameters via sp_configure equivalents.
+  - name: Databases
+    description: >-
+      Operations for managing databases within an SAP ASE server including
+      creation, configuration, and status monitoring.
+  - name: Devices
+    description: >-
+      Operations for managing database devices and disk storage resources
+      used by SAP ASE.
+  - name: Performance
+    description: >-
+      Operations for monitoring server performance metrics including cache
+      statistics, lock activity, and resource utilization.
+  - name: Servers
+    description: >-
+      Operations for retrieving server information, status, and configuration
+      details for SAP ASE instances.
+  - name: Users
+    description: >-
+      Operations for managing server logins and database users including
+      role assignments and permission management.
 security:
   - basicAuth: []
   - bearerAuth: []
