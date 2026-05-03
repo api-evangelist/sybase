@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sybase/refs/heads/main/json-schema/sybase-database-schema.json",
+  "title": "Sybase ASE Database",
+  "description": "Schema for a SAP Adaptive Server Enterprise database resource",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Database name"
+    },
+    "dbId": {
+      "type": "integer",
+      "description": "Numeric database identifier"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Login name of the database owner"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["online", "offline", "suspect", "loading", "recovering"],
+      "description": "Current database status"
+    },
+    "sizeMB": {
+      "type": "number",
+      "description": "Total allocated size in megabytes"
+    },
+    "dataUsedMB": {
+      "type": "number",
+      "description": "Space used by data in megabytes"
+    },
+    "logUsedMB": {
+      "type": "number",
+      "description": "Space used by transaction log in megabytes"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Database creation timestamp"
+    }
+  },
+  "required": ["name", "status"]
+}

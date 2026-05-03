@@ -1,0 +1,38 @@
+{
+  "summary": "List databases on an ASE server",
+  "description": "Example of listing all databases on a SAP ASE server",
+  "request": {
+    "method": "GET",
+    "url": "https://localhost:8443/ase/v1/servers/ASE_PROD/databases",
+    "headers": {
+      "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ="
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "databases": [
+        {
+          "name": "master",
+          "dbId": 1,
+          "owner": "sa",
+          "status": "online",
+          "sizeMB": 30,
+          "dataUsedMB": 12.5,
+          "logUsedMB": 2.1,
+          "created": "2024-01-15T08:00:00.000Z"
+        },
+        {
+          "name": "production_db",
+          "dbId": 5,
+          "owner": "app_user",
+          "status": "online",
+          "sizeMB": 2048,
+          "dataUsedMB": 1456.3,
+          "logUsedMB": 128.7,
+          "created": "2024-03-20T14:30:00.000Z"
+        }
+      ]
+    }
+  }
+}

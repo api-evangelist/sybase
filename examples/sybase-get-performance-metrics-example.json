@@ -1,0 +1,26 @@
+{
+  "summary": "Get server performance metrics",
+  "description": "Example of retrieving performance metrics for a SAP ASE server",
+  "request": {
+    "method": "GET",
+    "url": "https://localhost:8443/ase/v1/servers/ASE_PROD/performance?interval=60",
+    "headers": {
+      "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ="
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "serverId": "ASE_PROD",
+      "timestamp": "2026-05-03T12:00:00.000Z",
+      "cpuUtilization": 42.5,
+      "ioReadsPerSec": 1250.3,
+      "ioWritesPerSec": 876.1,
+      "networkBytesSentPerSec": 524288,
+      "networkBytesReceivedPerSec": 131072,
+      "transactionsPerSec": 387.2,
+      "activeProcesses": 48,
+      "blockedProcesses": 2
+    }
+  }
+}

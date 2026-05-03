@@ -1,75 +1,45 @@
-# Sybase APIs (sybase)
-A collection of APIs and resources for Sybase database systems
+# Sybase
 
-**URL:** [Visit APIs.json URL](https://www.sap.com/products/sybase.html)
+Sybase (now SAP Adaptive Server Enterprise) is a high-performance relational database management system designed for transaction-heavy enterprise applications. SAP ASE provides a REST API for server administration, database management, performance monitoring, user management, and backup operations.
 
-## Tags:
-
- - Database, SQL, Enterprise, SAP
-
-## Timestamps
-
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Website:** https://www.sap.com/products/data-cloud/sybase-ase.html
+- **Documentation:** https://help.sap.com/docs/SAP_ASE
+- **Support Portal:** https://support.sap.com/sybase
+- **Community:** https://pages.community.sap.com/topics/applications-on-ase
 
 ## APIs
 
 ### Sybase ASE REST API
-REST API for Sybase Adaptive Server Enterprise administration and monitoring
+REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations.
 
-**Human URL:** [https://help.sap.com/docs/SAP_ASE](https://help.sap.com/docs/SAP_ASE)
+- **Documentation:** https://help.sap.com/docs/SAP_ASE
+- **OpenAPI:** [openapi/sybase-ase-rest-api-openapi.yml](openapi/sybase-ase-rest-api-openapi.yml)
 
+## Artifacts
 
-#### Tags:
+| Type | Path |
+|---|---|
+| OpenAPI Specs | [openapi/](openapi/) |
+| Spectral Rules | [rules/sybase-rules.yml](rules/sybase-rules.yml) |
+| Naftiko Capabilities | [capabilities/](capabilities/) |
+| JSON Schema | [json-schema/](json-schema/) |
+| JSON Structure | [json-structure/](json-structure/) |
+| JSON-LD Context | [json-ld/sybase-context.jsonld](json-ld/sybase-context.jsonld) |
+| Examples | [examples/](examples/) |
+| Vocabulary | [vocabulary/sybase-vocabulary.yml](vocabulary/sybase-vocabulary.yml) |
 
- - Database Management, Monitoring, Administration
+## Naftiko Capabilities
 
-#### Properties
+### Shared Definitions
+- [capabilities/shared/sybase-ase-api.yaml](capabilities/shared/sybase-ase-api.yaml) — ASE REST API consumer
 
-- [Documentation](https://help.sap.com/docs/SAP_ASE/REST_API)
-- [OpenAPI](https://api.sybase.example.com/ase/v1/openapi.json)
-- [Authentication](https://help.sap.com/docs/SAP_ASE/authentication)
+### Workflow Capabilities
+- [capabilities/database-administration.yaml](capabilities/database-administration.yaml) — Database administration workflow (REST port 8080, MCP port 9090, 12 tools)
 
-### Sybase IQ REST API
-REST API for SAP IQ (formerly Sybase IQ) analytics database
+## Authentication
 
-**Human URL:** [https://help.sap.com/docs/SAP_IQ](https://help.sap.com/docs/SAP_IQ)
-
-
-#### Tags:
-
- - Analytics, Data Warehouse, Big Data
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/SAP_IQ/REST_API)
-- [OpenAPI](https://api.sybase.example.com/iq/v1/openapi.json)
-
-### SAP Mobile Platform API
-APIs for Sybase mobile application development and management
-
-**Human URL:** [https://help.sap.com/docs/SAP_MOBILE_PLATFORM](https://help.sap.com/docs/SAP_MOBILE_PLATFORM)
-
-
-#### Tags:
-
- - Mobile, Application Development, Synchronization
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/SAP_MOBILE_PLATFORM/API)
-- [SDK](https://help.sap.com/docs/SAP_MOBILE_PLATFORM/SDK)
-
-## Common Properties
-
-- [Portal](https://support.sap.com/sybase)
-- [Support](https://support.sap.com/en/product/database.html)
-- [Community](https://community.sap.com/topics/sybase)
-- [Downloads](https://support.sap.com/swdc)
-- [Blog](https://blogs.sap.com/tags/products-sybase/)
+SAP ASE REST API supports HTTP Basic authentication and Bearer token authentication. Credentials correspond to SAP ASE server login accounts.
 
 ## Maintainers
 
-**FN:** SAP
-
-**Email:** support@sap.com
+- Kin Lane (kin@apievangelist.com)

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sybase/refs/heads/main/json-schema/sybase-server-schema.json",
+  "title": "Sybase ASE Server",
+  "description": "Schema for a SAP Adaptive Server Enterprise (ASE) instance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique server identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "SAP ASE server name"
+    },
+    "version": {
+      "type": "string",
+      "description": "SAP ASE version string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["running", "stopped", "starting", "shutting_down", "maintenance"],
+      "description": "Current operational status"
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname of the server"
+    },
+    "port": {
+      "type": "integer",
+      "description": "Network port the server listens on"
+    },
+    "pageSize": {
+      "type": "integer",
+      "enum": [2048, 4096, 8192, 16384],
+      "description": "Logical page size in bytes"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last server start timestamp"
+    },
+    "platformDescription": {
+      "type": "string",
+      "description": "Operating system platform description"
+    }
+  },
+  "required": ["id", "name", "status"]
+}

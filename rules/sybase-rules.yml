@@ -1,0 +1,84 @@
+extends: [[spectral:oas, all]]
+
+rules:
+  # Sybase ASE REST API uses /servers/{serverId} hierarchical path pattern
+  sybase-server-path-prefix:
+    description: All resource paths should be under /servers/{serverId}
+    severity: hint
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # Operation IDs must use camelCase
+  sybase-operation-id-camel-case:
+    description: Operation IDs must use camelCase naming convention
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # Summaries must use Title Case
+  sybase-summary-title-case:
+    description: Operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 ]+$"
+
+  # POST operations creating resources should return 201
+  sybase-create-returns-201:
+    description: POST operations that create resources should return 201 Created
+    severity: warn
+    given: "$.paths[*].post.responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ['201']
+            - required: ['202']
+
+  # serverId path parameter must be required
+  sybase-server-id-required:
+    description: serverId path parameter must be marked as required
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'serverId')]"
+    then:
+      field: required
+      function: truthy
+
+  # All operations must have at least one tag
+  sybase-operation-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  # 401 response must be defined for all operations
+  sybase-auth-response:
+    description: All operations must document 401 Unauthorized response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: '401'
+      function: truthy
+
+  # Descriptions should be present on all operations
+  sybase-operation-description:
+    description: Operations must have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy

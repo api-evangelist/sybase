@@ -62,7 +62,7 @@ paths:
   /servers:
     get:
       operationId: listServers
-      summary: Sybase List ASE servers
+      summary: List ASE Servers
       description: >-
         Retrieves a list of SAP ASE server instances available for
         administration and monitoring through this API endpoint.
@@ -89,7 +89,7 @@ paths:
   /servers/{serverId}:
     get:
       operationId: getServer
-      summary: Sybase Get server details
+      summary: Get Server Details
       description: >-
         Retrieves detailed information about a specific SAP ASE server
         instance including version, status, uptime, and configuration summary.
@@ -119,7 +119,7 @@ paths:
   /servers/{serverId}/status:
     get:
       operationId: getServerStatus
-      summary: Sybase Get server status
+      summary: Get Server Status
       description: >-
         Retrieves the current operational status of a SAP ASE server including
         uptime, active connections, CPU utilization, and memory usage metrics.
@@ -149,7 +149,7 @@ paths:
   /servers/{serverId}/databases:
     get:
       operationId: listDatabases
-      summary: Sybase List databases
+      summary: List Databases
       description: >-
         Retrieves a list of all databases on the specified SAP ASE server
         including their status, size, and owner information.
@@ -177,7 +177,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createDatabase
-      summary: Sybase Create a database
+      summary: Create a Database
       description: >-
         Creates a new database on the specified SAP ASE server with the
         provided configuration parameters including name, size, and device
@@ -214,7 +214,7 @@ paths:
   /servers/{serverId}/databases/{databaseName}:
     get:
       operationId: getDatabase
-      summary: Sybase Get database details
+      summary: Get Database Details
       description: >-
         Retrieves detailed information about a specific database including
         size, space usage, configuration options, and segment information.
@@ -245,7 +245,7 @@ paths:
   /servers/{serverId}/performance:
     get:
       operationId: getPerformanceMetrics
-      summary: Sybase Get performance metrics
+      summary: Get Performance Metrics
       description: >-
         Retrieves current performance metrics for the SAP ASE server including
         CPU utilization, disk I/O statistics, cache hit ratios, lock activity,
@@ -286,7 +286,7 @@ paths:
   /servers/{serverId}/performance/cache:
     get:
       operationId: getCacheMetrics
-      summary: Sybase Get cache performance metrics
+      summary: Get Cache Performance Metrics
       description: >-
         Retrieves detailed cache performance statistics for the SAP ASE server
         including data cache hit ratios, procedure cache utilization, and
@@ -311,7 +311,7 @@ paths:
   /servers/{serverId}/performance/locks:
     get:
       operationId: getLockMetrics
-      summary: Sybase Get lock activity metrics
+      summary: Get Lock Activity Metrics
       description: >-
         Retrieves lock management statistics including lock contention,
         deadlock occurrences, lock wait times, and lock promotion activity
@@ -336,7 +336,7 @@ paths:
   /servers/{serverId}/logins:
     get:
       operationId: listLogins
-      summary: Sybase List server logins
+      summary: List Server Logins
       description: >-
         Retrieves a list of all server-level logins configured on the SAP ASE
         server including their roles, default databases, and status.
@@ -364,7 +364,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createLogin
-      summary: Sybase Create a server login
+      summary: Create a Server Login
       description: >-
         Creates a new server-level login on the SAP ASE server with the
         specified credentials, default database, and role assignments.
@@ -400,7 +400,7 @@ paths:
   /servers/{serverId}/backups:
     get:
       operationId: listBackups
-      summary: Sybase List backup history
+      summary: List Backup History
       description: >-
         Retrieves the backup history for the specified SAP ASE server
         including completed, in-progress, and scheduled backup operations.
@@ -435,7 +435,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createBackup
-      summary: Sybase Initiate a database backup
+      summary: Initiate a Database Backup
       description: >-
         Initiates a new backup operation for the specified database on the
         SAP ASE server. Supports full database dumps, transaction log dumps,
@@ -472,7 +472,7 @@ paths:
   /servers/{serverId}/devices:
     get:
       operationId: listDevices
-      summary: Sybase List database devices
+      summary: List Database Devices
       description: >-
         Retrieves a list of all database devices configured on the SAP ASE
         server including their physical paths, sizes, and usage information.
@@ -501,7 +501,7 @@ paths:
   /servers/{serverId}/configuration:
     get:
       operationId: getConfiguration
-      summary: Sybase Get server configuration
+      summary: Get Server Configuration
       description: >-
         Retrieves the current server configuration parameters for the SAP ASE
         instance. Returns settings equivalent to those available through
@@ -532,7 +532,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateConfiguration
-      summary: Sybase Update server configuration
+      summary: Update Server Configuration
       description: >-
         Updates one or more server configuration parameters on the SAP ASE
         instance. Some parameters require a server restart to take effect.

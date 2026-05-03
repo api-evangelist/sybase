@@ -1,0 +1,166 @@
+name: Sybase Vocabulary
+description: >-
+  Domain vocabulary for Sybase (SAP Adaptive Server Enterprise) covering
+  database administration, performance monitoring, and management concepts
+  used across the SAP ASE REST API.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+provider: SAP (Sybase)
+url: https://www.sap.com/products/data-cloud/sybase-ase.html
+
+terms:
+  - term: SAP ASE
+    definition: >-
+      SAP Adaptive Server Enterprise, formerly known as Sybase ASE. A
+      high-performance relational database management system designed for
+      transaction-heavy enterprise applications. Supports OLTP workloads
+      with advanced lock management, multi-threaded engine, and configurable
+      buffer pools.
+    tags:
+      - Core
+      - Database
+
+  - term: Server
+    definition: >-
+      An SAP ASE database server instance. A server runs on a host at a
+      specific port and manages one or more databases. Servers are identified
+      by serverId in the REST API.
+    tags:
+      - Core
+      - Administration
+
+  - term: Database
+    definition: >-
+      A logical container within an SAP ASE server that holds tables, stored
+      procedures, triggers, and other objects. Each database has its own
+      owner, transaction log, and device allocation.
+    tags:
+      - Core
+      - Database
+
+  - term: Device
+    definition: >-
+      A physical disk resource (file or raw partition) allocated to SAP ASE
+      for data storage. Devices are divided into 2KB allocation units and
+      assigned to databases for data or log segments.
+    tags:
+      - Storage
+      - Administration
+
+  - term: Transaction Log
+    definition: >-
+      A sequential log of all database modifications, used for recovery and
+      replication. Each database has its own transaction log device. The log
+      can be dumped (backed up) independently from the database.
+    tags:
+      - Data Integrity
+      - Recovery
+
+  - term: Login
+    definition: >-
+      A server-level account used to connect to SAP ASE. Logins are created
+      at the server level and can be mapped to database users within
+      individual databases. Can have server roles assigned.
+    tags:
+      - Security
+      - User Management
+
+  - term: sp_configure
+    definition: >-
+      A Transact-SQL system stored procedure for viewing and modifying SAP
+      ASE server configuration parameters. The REST API's Configuration
+      endpoints provide equivalent functionality programmatically.
+    tags:
+      - Configuration
+      - Administration
+
+  - term: Named Cache
+    definition: >-
+      A memory buffer pool in SAP ASE that can be configured to store data
+      for specific tables or databases. Named caches have configurable size
+      and buffer pool wash size for performance optimization.
+    tags:
+      - Performance
+      - Memory
+
+  - term: Page Size
+    definition: >-
+      The fundamental I/O unit for SAP ASE, configured at server creation
+      time as 2KB, 4KB, 8KB, or 16KB. The page size determines the maximum
+      row size and affects memory usage for buffer pools.
+    tags:
+      - Configuration
+      - Storage
+
+  - term: sp_sysmon
+    definition: >-
+      A Transact-SQL system stored procedure that generates a comprehensive
+      performance report for an SAP ASE server. The REST API's Performance
+      endpoints expose equivalent metrics programmatically.
+    tags:
+      - Performance
+      - Monitoring
+
+  - term: Lock Contention
+    definition: >-
+      A condition where multiple processes compete for locks on the same
+      database objects, causing waits and potentially deadlocks. Monitored
+      via GET /servers/{serverId}/performance/locks.
+    tags:
+      - Performance
+      - Concurrency
+
+  - term: Deadlock
+    definition: >-
+      A situation where two or more database processes are waiting for each
+      other to release locks, creating a circular wait condition. SAP ASE
+      automatically detects and resolves deadlocks by killing one process.
+    tags:
+      - Performance
+      - Concurrency
+
+  - term: Database Dump
+    definition: >-
+      A backup operation that saves a complete copy of a database or
+      transaction log to a dump device. Equivalent to DUMP DATABASE or
+      DUMP TRANSACTION commands. Initiated via POST /servers/{serverId}/backups.
+    tags:
+      - Backup
+      - Recovery
+
+  - term: SUID
+    definition: >-
+      Server User ID. A numeric identifier assigned to each login in SAP
+      ASE's syslogins system table. Used internally for mapping logins to
+      database users.
+    tags:
+      - Security
+      - User Management
+
+  - term: Segment
+    definition: >-
+      A logical grouping of database device pages within an SAP ASE database.
+      Default segments are system, default, and logsegment. Tables and
+      indexes can be placed on specific segments for I/O distribution.
+    tags:
+      - Storage
+      - Database
+
+  - term: Cache Hit Ratio
+    definition: >-
+      The percentage of page requests satisfied from the memory buffer cache
+      without requiring a disk read. Higher hit ratios indicate better
+      memory utilization. Target is typically above 95% for OLTP workloads.
+    tags:
+      - Performance
+      - Monitoring
+
+  - term: Lock Promotion
+    definition: >-
+      An automatic escalation from row-level or page-level locks to a table
+      lock when a query acquires too many fine-grained locks. Configurable
+      via lct_admin. Tracked in lock metrics.
+    tags:
+      - Concurrency
+      - Performance

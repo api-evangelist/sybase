@@ -8,24 +8,29 @@ tags:
   - SAP
   - SQL
 created: '2024'
-modified: '2026-03-16'
+modified: '2026-05-03'
 url: https://www.sap.com/products/data-cloud/sybase-ase.html
 apis:
   - name: Sybase ASE REST API
     description: >-
       REST API for Sybase Adaptive Server Enterprise administration and monitoring.
+      Provides programmatic access to server configuration, database management,
+      performance monitoring, user administration, and backup operations.
     image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
     humanURL: https://help.sap.com/docs/SAP_ASE
-    baseURL: https://api.sybase.example.com/ase/v1
+    baseURL: https://{server}:{port}/ase/v1
     tags:
       - Administration
+      - Backup
       - Database Management
       - Monitoring
+      - Performance
     properties:
       - type: Documentation
-        url: https://help.sap.com/docs/SAP_ASE/REST_API
+        url: https://help.sap.com/docs/SAP_ASE
       - type: OpenAPI
-        url: https://api.sybase.example.com/ase/v1/openapi.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/sybase/refs/heads/main/openapi/sybase-ase-rest-api-openapi.yml
       - type: Authentication
         url: https://help.sap.com/docs/SAP_ASE/authentication
       - type: Change Log

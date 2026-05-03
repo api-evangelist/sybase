@@ -1,0 +1,357 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sybase ASE Database Administration"
+  description: >-
+    Unified database administration capability for SAP Adaptive Server Enterprise.
+    Enables DBAs and platform teams to monitor server health, manage databases,
+    track performance, administer users, and execute backup operations via
+    REST and MCP interfaces.
+  tags:
+    - Administration
+    - Backup
+    - Database Management
+    - Monitoring
+    - Performance
+    - SAP
+    - Sybase
+    - Sybase ASE
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SYBASE_USERNAME: SYBASE_USERNAME
+      SYBASE_PASSWORD: SYBASE_PASSWORD
+
+capability:
+  consumes:
+    - import: sybase-ase
+      location: ./shared/sybase-ase-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sybase-dba-api
+      description: "Unified REST API for SAP ASE database administration."
+      resources:
+        - path: /v1/servers
+          name: servers
+          description: "SAP ASE server management"
+          operations:
+            - method: GET
+              name: list-servers
+              description: "List ASE Servers"
+              call: "sybase-ase.list-servers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}
+          name: server-detail
+          description: "Single server information"
+          operations:
+            - method: GET
+              name: get-server
+              description: "Get Server Details"
+              call: "sybase-ase.get-server"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/status
+          name: server-status
+          description: "Server operational status"
+          operations:
+            - method: GET
+              name: get-server-status
+              description: "Get Server Status"
+              call: "sybase-ase.get-server-status"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/databases
+          name: databases
+          description: "Database management"
+          operations:
+            - method: GET
+              name: list-databases
+              description: "List Databases"
+              call: "sybase-ase.list-databases"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-database
+              description: "Create a Database"
+              call: "sybase-ase.create-database"
+              with:
+                serverId: "rest.serverId"
+                name: "rest.name"
+                deviceName: "rest.deviceName"
+                sizeMB: "rest.sizeMB"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/databases/{databaseName}
+          name: database-detail
+          description: "Database details and space usage"
+          operations:
+            - method: GET
+              name: get-database
+              description: "Get Database Details"
+              call: "sybase-ase.get-database"
+              with:
+                serverId: "rest.serverId"
+                databaseName: "rest.databaseName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/performance
+          name: performance
+          description: "Server performance metrics"
+          operations:
+            - method: GET
+              name: get-performance-metrics
+              description: "Get Performance Metrics"
+              call: "sybase-ase.get-performance-metrics"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/performance/cache
+          name: cache-metrics
+          description: "Cache performance statistics"
+          operations:
+            - method: GET
+              name: get-cache-metrics
+              description: "Get Cache Performance Metrics"
+              call: "sybase-ase.get-cache-metrics"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/performance/locks
+          name: lock-metrics
+          description: "Lock contention statistics"
+          operations:
+            - method: GET
+              name: get-lock-metrics
+              description: "Get Lock Activity Metrics"
+              call: "sybase-ase.get-lock-metrics"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/backups
+          name: backups
+          description: "Database backup management"
+          operations:
+            - method: GET
+              name: list-backups
+              description: "List Backup History"
+              call: "sybase-ase.list-backups"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-backup
+              description: "Initiate a Database Backup"
+              call: "sybase-ase.create-backup"
+              with:
+                serverId: "rest.serverId"
+                databaseName: "rest.databaseName"
+                type: "rest.type"
+                deviceName: "rest.deviceName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/servers/{serverId}/configuration
+          name: configuration
+          description: "Server configuration (sp_configure)"
+          operations:
+            - method: GET
+              name: get-configuration
+              description: "Get Server Configuration"
+              call: "sybase-ase.get-configuration"
+              with:
+                serverId: "rest.serverId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sybase-dba-mcp
+      transport: http
+      description: "MCP server for AI-assisted SAP ASE database administration."
+      tools:
+        - name: list-servers
+          description: "List all available SAP ASE server instances"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.list-servers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-server
+          description: "Get version, status, host, port, and configuration summary for a server"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-server"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-server-status
+          description: "Get real-time CPU, memory, active connections, and uptime"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-server-status"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-databases
+          description: "List all databases with status, size, and owner information"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.list-databases"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-database
+          description: "Get database details including data usage, log usage, and configuration"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-database"
+          with:
+            serverId: "tools.serverId"
+            databaseName: "tools.databaseName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-database
+          description: "Create a new database on a SAP ASE server"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "sybase-ase.create-database"
+          with:
+            serverId: "tools.serverId"
+            name: "tools.name"
+            deviceName: "tools.deviceName"
+            sizeMB: "tools.sizeMB"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-performance-metrics
+          description: "Get CPU, I/O, TPS, network, and process metrics for a server"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-performance-metrics"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-cache-metrics
+          description: "Get data cache and procedure cache hit ratios for all named caches"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-cache-metrics"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-lock-metrics
+          description: "Get lock contention statistics, deadlock counts, and wait times"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-lock-metrics"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-backups
+          description: "List backup history with status and size for databases on a server"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.list-backups"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-backup
+          description: "Initiate a full, transaction log, or incremental database backup"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "sybase-ase.create-backup"
+          with:
+            serverId: "tools.serverId"
+            databaseName: "tools.databaseName"
+            type: "tools.type"
+            deviceName: "tools.deviceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-configuration
+          description: "Get all server configuration parameters (sp_configure equivalent)"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sybase-ase.get-configuration"
+          with:
+            serverId: "tools.serverId"
+          outputParameters:
+            - type: object
+              mapping: "$."

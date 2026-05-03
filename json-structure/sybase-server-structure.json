@@ -1,0 +1,20 @@
+{
+  "name": "SybaseASEServer",
+  "description": "A SAP Adaptive Server Enterprise instance with all managed resources",
+  "fields": [
+    { "name": "id", "type": "string", "description": "Unique server ID" },
+    { "name": "name", "type": "string", "description": "Server name" },
+    { "name": "version", "type": "string", "description": "ASE version string" },
+    { "name": "status", "type": "string", "description": "running|stopped|starting|shutting_down|maintenance" },
+    { "name": "host", "type": "string", "description": "Server hostname" },
+    { "name": "port", "type": "integer", "description": "Listening port" },
+    { "name": "pageSize", "type": "integer", "description": "Logical page size in bytes" },
+    { "name": "startTime", "type": "datetime", "description": "Last start timestamp" }
+  ],
+  "relationships": [
+    { "name": "databases", "type": "Database", "cardinality": "one-to-many" },
+    { "name": "logins", "type": "Login", "cardinality": "one-to-many" },
+    { "name": "devices", "type": "Device", "cardinality": "one-to-many" },
+    { "name": "backups", "type": "Backup", "cardinality": "one-to-many" }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sybase": "https://www.sap.com/vocab/sybase#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Server": "sybase:ASEServer",
+    "Database": "sybase:ASEDatabase",
+    "Login": "sybase:ASELogin",
+    "Device": "sybase:ASEDevice",
+    "Backup": "sybase:ASEBackup",
+    "ConfigParameter": "sybase:ConfigParameter",
+
+    "id": "@id",
+    "name": "schema:name",
+    "version": "schema:softwareVersion",
+    "status": "schema:additionalType",
+    "host": "schema:serverAddress",
+    "port": "schema:serverPort",
+    "startTime": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "owner": "schema:accountablePerson",
+    "sizeMB": {
+      "@id": "sybase:sizeInMegabytes",
+      "@type": "xsd:decimal"
+    },
+    "dataUsedMB": {
+      "@id": "sybase:dataUsedMegabytes",
+      "@type": "xsd:decimal"
+    },
+    "logUsedMB": {
+      "@id": "sybase:logUsedMegabytes",
+      "@type": "xsd:decimal"
+    },
+    "cpuUtilization": {
+      "@id": "sybase:cpuUtilization",
+      "@type": "xsd:decimal"
+    },
+    "uptime": {
+      "@id": "sybase:uptimeSeconds",
+      "@type": "xsd:integer"
+    },
+    "physicalName": "sybase:physicalPath",
+    "deviceNumber": "sybase:deviceNumber",
+    "databaseName": "sybase:databaseName",
+    "type": "schema:additionalType",
+    "requiresRestart": "sybase:requiresRestart"
+  }
+}
