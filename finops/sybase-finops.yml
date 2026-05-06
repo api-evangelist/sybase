@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,178 +9,69 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Sybase
 providerId: sybase
-publisherName: Sybase
-serviceCategory: API
+publisherName: SAP SE
+serviceCategory: Enterprise Database
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
+  - FinOps
+  - FOCUS
   - Database
   - Enterprise
   - SAP
-  - SQL
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Sybase API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: Sybase (SAP ASE, SQL Anywhere, IQ, Replication Server) is sold under SAP enterprise licensing.
+  This artifact captures publisher and category surface only; meters are placeholders pending an SAP
+  price list. There is no public per-call API meter.
+sources:
+  - https://www.sap.com/products/technology-platform/sybase-ase.html
+notes: 'Reconciliation marked false: SAP/Sybase pricing is not public; sold via SAP sales and partner
+  network under enterprise license metrics (core, named user, term).'
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Enterprise License
+  billingFrequency: Annual or Term
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Sybase
-  ServiceCategory: Developer Tools / API
-  ProviderName: Sybase
-  PublisherName: Sybase
-  InvoiceIssuerName: Sybase
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Enterprise Database
+  ProviderName: SAP
+  PublisherName: SAP SE
+  InvoiceIssuerName: SAP SE
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: license_metric
+    description: SAP licensing metric used (core, CPU, named user, edition); cost realized through
+      the customer's SAP order
+    unit: varies
+    aggregation: max
+    dimensions:
+      - product_edition
+      - license_type
+  - name: maintenance_support
+    description: SAP Enterprise Support / maintenance attached to the underlying license
+    unit: year
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Sybase ASE REST API
-    baseURL: https://{server}:{port}/ase/v1
-    tags:
-      - Administration
-      - Backup
-      - Database Management
-      - Monitoring
-      - Performance
-    serviceName: Sybase ASE REST API
-    serviceCategory: API
-  - name: Sybase IQ REST API
-    baseURL: https://api.sybase.example.com/iq/v1
-    tags:
-      - Analytics
-      - Big Data
-      - Data Warehouse
-    serviceName: Sybase IQ REST API
-    serviceCategory: API
-  - name: SAP Mobile Platform API
-    baseURL: https://api.sybase.example.com/mobile/v1
-    tags:
-      - Application Development
-      - Mobile
-      - Synchronization
-    serviceName: SAP Mobile Platform API
-    serviceCategory: API
-  - name: SAP SQL Anywhere HTTP Web Services
-    baseURL: https://{server}:{port}
-    tags:
-      - Database
-      - Embedded Database
-      - OData
-      - Web Services
-    serviceName: SAP SQL Anywhere HTTP Web Services
-    serviceCategory: API
-  - name: SDK for SAP ASE
-    baseURL: https://{server}:{port}
-    tags:
-      - Client Libraries
-      - Database Connectivity
-      - JDBC
-      - ODBC
-      - SDK
-    serviceName: SDK for SAP ASE
-    serviceCategory: API
-  - name: SAP Replication Server
-    baseURL: https://{server}:{port}
-    tags:
-      - Data Synchronization
-      - High Availability
-      - Replication
-    serviceName: SAP Replication Server
-    serviceCategory: API
-  - name: SAP ASE Cockpit
-    baseURL: https://{server}:{port}
-    tags:
-      - Administration
-      - Management Console
-      - Monitoring
-    serviceName: SAP ASE Cockpit
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - product_edition
+principles:
+  - name: Visibility
+    description: Visibility into Sybase spend is via the SAP order schedule and SAP for Me account
+      view; database server consumption is tracked via the SAP-provided usage measurement tools (LAW,
+      USMM).
+  - name: Allocation
+    description: Allocate by SAP system ID and database; SAP licensing metrics tie directly to deployed
+      cores or named users per system.
+  - name: Optimization
+    description: Optimization levers are right-sizing cores, consolidating non-prod ASE/IQ instances,
+      moving from perpetual to subscription where the workload is contracting, and migrating cold workloads
+      to lower-cost editions.
+  - name: Accountability
+    description: Account ownership rests with the SAP Basis / database administration team and the
+      contract owner negotiating with SAP.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
