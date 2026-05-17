@@ -33,7 +33,7 @@ apis:
           https://raw.githubusercontent.com/api-evangelist/sybase/refs/heads/main/openapi/sybase-ase-rest-api-openapi.yml
       - type: Authentication
         url: https://help.sap.com/docs/SAP_ASE/authentication
-      - type: Change Log
+      - type: ChangeLog
         url: https://help.sap.com/docs/SAP_ASE/791c41982ee345a19c4ec4b774222c4f/5db753f3a9c24ddcabc2581a98b99585.html
   - name: Sybase IQ REST API
     description: >-
@@ -84,7 +84,7 @@ apis:
         url: https://help.sap.com/docs/SAP_SQL_Anywhere
       - type: Reference
         url: https://help.sap.com/docs/SAP_SQL_Anywhere/98ad9ec940e2465695685d98e308dff5/8e8c9049a1fe448a820c5f5bc72119e7.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://dcx.sap.com/
   - name: SDK for SAP ASE
     description: >-
@@ -106,7 +106,7 @@ apis:
         url: https://help.sap.com/docs/SAP_ASE_SDK
       - type: Reference
         url: https://help.sap.com/docs/SAP_ASE_SDK/882ef48c7e9c4d6e845d98f34378db40/b21b7c31bbf91014ae38f7f5cc782b0b.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://help.sap.com/docs/SAP_ASE_SDK/e12c539de04b44a0bb17a545a148361c/0d968d9bcca6462f9414cf6010088af9.html
   - name: SAP Replication Server
     description: >-
@@ -126,7 +126,7 @@ apis:
         url: https://help.sap.com/docs/SAP_REPLICATION_SERVER
       - type: Reference
         url: https://help.sap.com/doc/efc57020a2914d40af14c48e08bfd01f/16.0.4.3/en-US/Replication_Server_Reference_Manual_en.pdf
-      - type: Getting Started
+      - type: GettingStarted
         url: https://help.sap.com/doc/1699d891ffc746babeaf700da051f89e/16.0.4.1/en-US/SAP_RS_Quick_Start_ASE_en.pdf
   - name: SAP ASE Cockpit
     description: >-
@@ -144,7 +144,7 @@ apis:
     properties:
       - type: Documentation
         url: https://help.sap.com/docs/SAP_ASE/9623e59098a24dc6b9013ba5d709309e/13ec24bd751e1014bf789ad719f1de31.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://blogs.sap.com/2018/02/18/first-steps-with-sap-ase-cockpit/
 common:
   - type: Portal
@@ -161,23 +161,23 @@ common:
     url: https://www.sap.com/products/data-cloud/sybase-ase.html
   - type: Documentation
     url: https://help.sap.com/docs/SAP_ASE
-  - type: Getting Started
+  - type: GettingStarted
     url: https://help.sap.com/docs/SAP_ASE/9623e59098a24dc6b9013ba5d709309e/13ec24bd751e1014bf789ad719f1de31.html
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.sap.com/about/legal/terms-of-use.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.sap.com/about/legal/privacy.html
-  - type: Status
+  - type: StatusPage
     url: https://www.sap.com/about/trust-center/cloud-service-status.html
-  - type: Change Log
+  - type: ChangeLog
     url: https://help.sap.com/docs/SAP_ASE/791c41982ee345a19c4ec4b774222c4f/5db753f3a9c24ddcabc2581a98b99585.html
   - type: Login
     url: https://accounts.sap.com
-  - type: Sign Up
+  - type: SignUp
     url: https://www.sap.com/products/technology-platform/sybase-ase/trial.html
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/sqlanywhere
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/sybase
   - type: SDKs
     url: https://help.sap.com/docs/SAP_ASE_SDK
