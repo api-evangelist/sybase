@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sybase ASE REST API — Users
+  description: 'Sybase ASE REST API — Users. 2 operations. Lead operation: List Server Logins. Self-contained Naftiko capability
+    covering one Sybase business surface.'
+  tags:
+  - Sybase
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYBASE_API_KEY: SYBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ase-rest-users
+    baseUri: https://{server}:{port}/ase/v1
+    description: Sybase ASE REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: servers-serverId-logins
+      path: /servers/{serverId}/logins
+      operations:
+      - name: listlogins
+        method: GET
+        description: List Server Logins
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlogin
+        method: POST
+        description: Create a Server Login
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ase-rest-users-rest
+    port: 8080
+    description: REST adapter for Sybase ASE REST API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/servers/{serverid}/logins
+      name: servers-serverid-logins
+      description: REST surface for servers-serverId-logins.
+      operations:
+      - method: GET
+        name: listlogins
+        description: List Server Logins
+        call: ase-rest-users.listlogins
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlogin
+        description: Create a Server Login
+        call: ase-rest-users.createlogin
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ase-rest-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sybase ASE REST API — Users. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-server-logins
+      description: List Server Logins
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ase-rest-users.listlogins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-server-login
+      description: Create a Server Login
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ase-rest-users.createlogin
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
