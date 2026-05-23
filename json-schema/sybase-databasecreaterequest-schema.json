@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseCreateRequest",
+  "title": "DatabaseCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new database on the SAP ASE server.",
+  "required": [
+    "name",
+    "deviceName",
+    "sizeMB"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the new database.",
+      "maxLength": 30
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "The name of the database device for data storage."
+    },
+    "sizeMB": {
+      "type": "number",
+      "format": "double",
+      "description": "The initial size of the database in megabytes.",
+      "minimum": 2
+    },
+    "logDeviceName": {
+      "type": "string",
+      "description": "The name of the device for the transaction log."
+    },
+    "logSizeMB": {
+      "type": "number",
+      "format": "double",
+      "description": "The initial size of the transaction log in megabytes."
+    }
+  }
+}

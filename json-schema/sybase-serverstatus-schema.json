@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerStatus",
+  "title": "ServerStatus",
+  "type": "object",
+  "description": "Current operational status and resource utilization metrics for a SAP ASE server.",
+  "properties": {
+    "serverId": {
+      "type": "string",
+      "description": "Unique identifier of the server."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status."
+    },
+    "uptime": {
+      "type": "integer",
+      "description": "Server uptime in seconds since last restart."
+    },
+    "activeConnections": {
+      "type": "integer",
+      "description": "Number of currently active user connections."
+    },
+    "maxConnections": {
+      "type": "integer",
+      "description": "Maximum number of configured user connections."
+    },
+    "cpuUtilization": {
+      "type": "number",
+      "format": "double",
+      "description": "Current CPU utilization percentage."
+    },
+    "memoryUsageMB": {
+      "type": "number",
+      "format": "double",
+      "description": "Current memory usage in megabytes."
+    },
+    "totalMemoryMB": {
+      "type": "number",
+      "format": "double",
+      "description": "Total memory allocated to the server in megabytes."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the status was captured."
+    }
+  }
+}

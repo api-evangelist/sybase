@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurationUpdateRequest",
+  "title": "ConfigurationUpdateRequest",
+  "type": "object",
+  "description": "Request body for updating server configuration parameters.",
+  "required": [
+    "parameters"
+  ],
+  "properties": {
+    "parameters": {
+      "type": "array",
+      "description": "List of configuration parameters to update.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The configuration parameter name."
+          },
+          "value": {
+            "type": "string",
+            "description": "The new value to set."
+          }
+        }
+      }
+    }
+  }
+}

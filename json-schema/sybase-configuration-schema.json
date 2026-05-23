@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Configuration",
+  "title": "Configuration",
+  "type": "object",
+  "description": "Server configuration parameters organized by group, equivalent to sp_configure output.",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "description": "Configuration parameter groups.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The configuration group name."
+          },
+          "parameters": {
+            "type": "array",
+            "description": "Parameters within this group.",
+            "items": {
+              "$ref": "#/components/schemas/ConfigParameter"
+            }
+          }
+        }
+      }
+    }
+  }
+}

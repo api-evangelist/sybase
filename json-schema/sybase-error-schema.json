@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "description": "Standard error response returned when an API request fails.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "A machine-readable error code."
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable error message."
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional details about the error."
+    }
+  }
+}

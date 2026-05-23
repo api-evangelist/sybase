@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PerformanceMetrics",
+  "title": "PerformanceMetrics",
+  "type": "object",
+  "description": "Comprehensive performance metrics for a SAP ASE server including CPU, memory, disk, and network statistics.",
+  "properties": {
+    "serverId": {
+      "type": "string",
+      "description": "Unique identifier of the server."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when metrics were captured."
+    },
+    "cpuUtilization": {
+      "type": "number",
+      "format": "double",
+      "description": "Overall CPU utilization percentage."
+    },
+    "ioReadsPerSec": {
+      "type": "number",
+      "format": "double",
+      "description": "Disk read operations per second."
+    },
+    "ioWritesPerSec": {
+      "type": "number",
+      "format": "double",
+      "description": "Disk write operations per second."
+    },
+    "networkBytesSentPerSec": {
+      "type": "number",
+      "format": "double",
+      "description": "Network bytes sent per second."
+    },
+    "networkBytesReceivedPerSec": {
+      "type": "number",
+      "format": "double",
+      "description": "Network bytes received per second."
+    },
+    "transactionsPerSec": {
+      "type": "number",
+      "format": "double",
+      "description": "Committed transactions per second."
+    },
+    "activeProcesses": {
+      "type": "integer",
+      "description": "Number of currently active server processes."
+    },
+    "blockedProcesses": {
+      "type": "integer",
+      "description": "Number of processes currently waiting on locks."
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoginCreateRequest",
+  "title": "LoginCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new server login.",
+  "required": [
+    "name",
+    "password"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The login name to create.",
+      "maxLength": 30
+    },
+    "password": {
+      "type": "string",
+      "description": "The password for the new login.",
+      "format": "password"
+    },
+    "defaultDatabase": {
+      "type": "string",
+      "description": "The default database to assign."
+    },
+    "roles": {
+      "type": "array",
+      "description": "List of server roles to assign.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

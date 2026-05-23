@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Device",
+  "title": "Device",
+  "type": "object",
+  "description": "Represents a database device (disk resource) on the SAP ASE server.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The logical name of the device."
+    },
+    "physicalName": {
+      "type": "string",
+      "description": "The physical file path of the device."
+    },
+    "sizeMB": {
+      "type": "number",
+      "format": "double",
+      "description": "Total size of the device in megabytes."
+    },
+    "usedMB": {
+      "type": "number",
+      "format": "double",
+      "description": "Space currently used on the device in megabytes."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the device.",
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "deviceNumber": {
+      "type": "integer",
+      "description": "The numeric device identifier assigned by the server."
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CacheMetrics",
+  "title": "CacheMetrics",
+  "type": "object",
+  "description": "Data cache and procedure cache performance statistics for the SAP ASE server.",
+  "properties": {
+    "serverId": {
+      "type": "string",
+      "description": "Unique identifier of the server."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when metrics were captured."
+    },
+    "dataCacheHitRatio": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of data cache hits versus total requests."
+    },
+    "procedureCacheHitRatio": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of procedure cache hits versus total requests."
+    },
+    "namedCaches": {
+      "type": "array",
+      "description": "Performance metrics for each named data cache.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the data cache."
+          },
+          "hitRatio": {
+            "type": "number",
+            "format": "double",
+            "description": "Cache hit ratio for this named cache."
+          },
+          "sizeMB": {
+            "type": "number",
+            "format": "double",
+            "description": "Total size of this named cache in megabytes."
+          },
+          "usedMB": {
+            "type": "number",
+            "format": "double",
+            "description": "Space currently used in this cache in megabytes."
+          }
+        }
+      }
+    }
+  }
+}

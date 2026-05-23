@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Backup",
+  "title": "Backup",
+  "type": "object",
+  "description": "Represents a database backup operation on the SAP ASE server.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the backup operation."
+    },
+    "databaseName": {
+      "type": "string",
+      "description": "The name of the database that was backed up."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of backup operation.",
+      "enum": [
+        "full",
+        "transaction_log",
+        "incremental"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the backup operation.",
+      "enum": [
+        "completed",
+        "in_progress",
+        "failed",
+        "scheduled"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the backup started."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the backup completed."
+    },
+    "sizeMB": {
+      "type": "number",
+      "format": "double",
+      "description": "Size of the backup in megabytes."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "The backup device or file path used."
+    }
+  }
+}

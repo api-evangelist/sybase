@@ -1,0 +1,265 @@
+{
+  "provider": "Sybase",
+  "providerId": "sybase",
+  "kind": "json-structure",
+  "description": "Structural overview of the Sybase API surface; extracted from openapi/.",
+  "schemaCount": 16,
+  "operationCount": 16,
+  "schemas": [
+    {
+      "name": "Server",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ServerStatus",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Database",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "DatabaseCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "deviceName",
+        "sizeMB"
+      ]
+    },
+    {
+      "name": "PerformanceMetrics",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "CacheMetrics",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "LockMetrics",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Login",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "LoginCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "password"
+      ]
+    },
+    {
+      "name": "Backup",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "BackupCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "databaseName",
+        "type",
+        "deviceName"
+      ]
+    },
+    {
+      "name": "Device",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Configuration",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConfigParameter",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ConfigurationUpdateRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "parameters"
+      ]
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/servers",
+      "operationId": "listServers",
+      "summary": "List ASE Servers",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}",
+      "operationId": "getServer",
+      "summary": "Get Server Details",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/status",
+      "operationId": "getServerStatus",
+      "summary": "Get Server Status",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/databases",
+      "operationId": "listDatabases",
+      "summary": "List Databases",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/servers/{serverId}/databases",
+      "operationId": "createDatabase",
+      "summary": "Create a Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/databases/{databaseName}",
+      "operationId": "getDatabase",
+      "summary": "Get Database Details",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/performance",
+      "operationId": "getPerformanceMetrics",
+      "summary": "Get Performance Metrics",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/performance/cache",
+      "operationId": "getCacheMetrics",
+      "summary": "Get Cache Performance Metrics",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/performance/locks",
+      "operationId": "getLockMetrics",
+      "summary": "Get Lock Activity Metrics",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/logins",
+      "operationId": "listLogins",
+      "summary": "List Server Logins",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/servers/{serverId}/logins",
+      "operationId": "createLogin",
+      "summary": "Create a Server Login",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/backups",
+      "operationId": "listBackups",
+      "summary": "List Backup History",
+      "tags": [
+        "Backups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/servers/{serverId}/backups",
+      "operationId": "createBackup",
+      "summary": "Initiate a Database Backup",
+      "tags": [
+        "Backups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/devices",
+      "operationId": "listDevices",
+      "summary": "List Database Devices",
+      "tags": [
+        "Devices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/servers/{serverId}/configuration",
+      "operationId": "getConfiguration",
+      "summary": "Get Server Configuration",
+      "tags": [
+        "Configuration"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/servers/{serverId}/configuration",
+      "operationId": "updateConfiguration",
+      "summary": "Update Server Configuration",
+      "tags": [
+        "Configuration"
+      ]
+    }
+  ]
+}

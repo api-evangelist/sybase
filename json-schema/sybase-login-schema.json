@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Login",
+  "title": "Login",
+  "type": "object",
+  "description": "Represents a server-level login account on the SAP ASE server.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The login name."
+    },
+    "suid": {
+      "type": "integer",
+      "description": "The server user identifier."
+    },
+    "defaultDatabase": {
+      "type": "string",
+      "description": "The default database for this login."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the login.",
+      "enum": [
+        "active",
+        "locked",
+        "suspended"
+      ]
+    },
+    "roles": {
+      "type": "array",
+      "description": "List of server roles assigned to this login.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the login was created."
+    }
+  }
+}

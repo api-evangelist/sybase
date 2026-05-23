@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockMetrics",
+  "title": "LockMetrics",
+  "type": "object",
+  "description": "Lock management statistics for the SAP ASE server including contention and deadlock information.",
+  "properties": {
+    "serverId": {
+      "type": "string",
+      "description": "Unique identifier of the server."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when metrics were captured."
+    },
+    "totalLockRequests": {
+      "type": "integer",
+      "description": "Total number of lock requests since last reset."
+    },
+    "lockWaits": {
+      "type": "integer",
+      "description": "Number of times a task had to wait for a lock."
+    },
+    "deadlocks": {
+      "type": "integer",
+      "description": "Number of deadlock occurrences."
+    },
+    "lockPromotions": {
+      "type": "integer",
+      "description": "Number of lock escalation events."
+    },
+    "avgLockWaitTimeMs": {
+      "type": "number",
+      "format": "double",
+      "description": "Average lock wait time in milliseconds."
+    }
+  }
+}
