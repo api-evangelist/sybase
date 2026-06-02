@@ -2,12 +2,20 @@
   "repo": "sybase",
   "feeds": [
     {
-      "source": "https://blogs.sap.com/tags/products-sybase/",
+      "source": "https://community.sap.com/khhcw49343/rss/Community?interaction.style=forum",
       "feed_url": "https://community.sap.com/khhcw49343/rss/Community?interaction.style=forum",
-      "title": "New board topics in SAP Community",
-      "saved": 20
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://support.sap.com/swdc",
+      "feed_url": "https://support.sap.com/swdc",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 30,
-  "fetched": "2026-05-17T20:48:52Z"
+  "post_count": 50,
+  "fetched": "2026-06-01T23:35:02Z"
 }
