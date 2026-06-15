@@ -1,0 +1,3852 @@
+{
+  "item": [
+    {
+      "id": "a975f0e1-7949-421b-8602-41ab50153431",
+      "name": "Backups",
+      "description": {
+        "content": "Operations for managing database backup and recovery operations including scheduling and status monitoring.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6f743c5-b0c3-480c-8554-5a648858447b",
+          "name": "List Backup History",
+          "request": {
+            "name": "List Backup History",
+            "description": {
+              "content": "Retrieves the backup history for the specified SAP ASE server including completed, in-progress, and scheduled backup operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "backups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "databaseName",
+                  "value": "<string>",
+                  "description": "Filter backup history by database name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f612b5e6-07ad-4485-956f-77f18c7764e9",
+              "name": "Successful retrieval of backup history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "backups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "databaseName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backups\": [\n    {\n      \"id\": \"string\",\n      \"databaseName\": \"string\",\n      \"type\": \"transaction_log\",\n      \"status\": \"in_progress\",\n      \"startTime\": \"1956-02-17T23:54:52.808Z\",\n      \"endTime\": \"2010-03-30T10:55:36.983Z\",\n      \"sizeMB\": 6762.785493234664,\n      \"deviceName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"databaseName\": \"string\",\n      \"type\": \"incremental\",\n      \"status\": \"failed\",\n      \"startTime\": \"1998-04-04T02:24:34.683Z\",\n      \"endTime\": \"1992-04-27T10:09:44.754Z\",\n      \"sizeMB\": 9155.570044876586,\n      \"deviceName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed08ee59-3786-467d-ac85-9b11b834293b",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "backups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "databaseName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "726cfe0d-58c5-420b-bca0-cb998cdcef83",
+          "name": "Initiate a Database Backup",
+          "request": {
+            "name": "Initiate a Database Backup",
+            "description": {
+              "content": "Initiates a new backup operation for the specified database on the SAP ASE server. Supports full database dumps, transaction log dumps, and incremental backups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "backups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebbe60f9-2376-486e-a233-c324c9b161f9",
+              "name": "Backup operation initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "backups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"databaseName\": \"string\",\n  \"type\": \"incremental\",\n  \"status\": \"completed\",\n  \"startTime\": \"2012-09-09T06:58:03.623Z\",\n  \"endTime\": \"1982-01-26T06:51:35.074Z\",\n  \"sizeMB\": 3179.192927288329,\n  \"deviceName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d4b74a8-b71d-4b0c-a64a-e582c4acedb4",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "backups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6dd1048-6549-4720-b3e7-e0d3d8bc0397",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "backups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bd96aa86-fb3d-425e-81ad-9995a5657e92",
+      "name": "Configuration",
+      "description": {
+        "content": "Operations for viewing and modifying SAP ASE server configuration parameters via sp_configure equivalents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bc11263-a735-48e4-8e60-de32976c3bcb",
+          "name": "Get Server Configuration",
+          "request": {
+            "name": "Get Server Configuration",
+            "description": {
+              "content": "Retrieves the current server configuration parameters for the SAP ASE instance. Returns settings equivalent to those available through sp_configure, organized by configuration groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<string>",
+                  "description": "Filter configuration parameters by group name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "011b1808-9e99-446d-a6da-0b232e9abaf9",
+              "name": "Successful retrieval of server configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"name\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        },\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": true\n        },\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "587e62df-6f44-4215-9b12-ac91948c1002",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b374b27d-3718-405c-b933-f8f79d1eb676",
+          "name": "Update Server Configuration",
+          "request": {
+            "name": "Update Server Configuration",
+            "description": {
+              "content": "Updates one or more server configuration parameters on the SAP ASE instance. Some parameters require a server restart to take effect.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b62e73ed-a26b-4775-aad1-c12d32c2fe5c",
+              "name": "Configuration updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"name\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        },\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": true\n        },\n        {\n          \"name\": \"string\",\n          \"runValue\": \"string\",\n          \"configValue\": \"string\",\n          \"defaultValue\": \"string\",\n          \"minimumValue\": \"string\",\n          \"maximumValue\": \"string\",\n          \"requiresRestart\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96d9480b-266e-48df-b0b2-b3ae7bacd728",
+              "name": "Invalid configuration parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df7dfcbe-6e4f-4d97-8c21-382c865f3eee",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "03419df8-184d-4c65-932b-5dbeee18ce43",
+      "name": "Databases",
+      "description": {
+        "content": "Operations for managing databases within an SAP ASE server including creation, configuration, and status monitoring.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f73f47fa-ceba-4da6-9226-f25ce47dea03",
+          "name": "List Databases",
+          "request": {
+            "name": "List Databases",
+            "description": {
+              "content": "Retrieves a list of all databases on the specified SAP ASE server including their status, size, and owner information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "databases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ebd8287-a717-46ca-b5ea-9dbe053a59e3",
+              "name": "Successful retrieval of database list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databases\": [\n    {\n      \"name\": \"string\",\n      \"dbId\": 3796,\n      \"owner\": \"string\",\n      \"status\": \"loading\",\n      \"sizeMB\": 9252.595075886442,\n      \"dataUsedMB\": 5925.502770997025,\n      \"logUsedMB\": 8434.643061740146,\n      \"created\": \"1956-08-07T11:36:37.215Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"dbId\": 4275,\n      \"owner\": \"string\",\n      \"status\": \"online\",\n      \"sizeMB\": 5688.83688740964,\n      \"dataUsedMB\": 4326.780184398611,\n      \"logUsedMB\": 7239.53009563892,\n      \"created\": \"1978-09-04T03:39:35.005Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f6ee990-a273-476f-9c91-2b0c8c8e52a2",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00cf9a01-0929-4d33-9c4a-8d06c4fde017",
+          "name": "Create a Database",
+          "request": {
+            "name": "Create a Database",
+            "description": {
+              "content": "Creates a new database on the specified SAP ASE server with the provided configuration parameters including name, size, and device allocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "databases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a78927b3-fe0a-4ab1-a176-39116ede785e",
+              "name": "Database created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"dbId\": 6613,\n  \"owner\": \"string\",\n  \"status\": \"suspect\",\n  \"sizeMB\": 4456.811857483954,\n  \"dataUsedMB\": 4821.805103552935,\n  \"logUsedMB\": 4017.0993588929337,\n  \"created\": \"2001-08-08T19:42:04.782Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce261d88-92e8-4e8d-b646-7692e80796d5",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71dcffee-4edb-46e5-96b5-0eb7c5702636",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a5edb84-862d-4c31-9ed2-974687a3442f",
+          "name": "Get Database Details",
+          "request": {
+            "name": "Get Database Details",
+            "description": {
+              "content": "Retrieves detailed information about a specific database including size, space usage, configuration options, and segment information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "databases",
+                ":databaseName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database within the SAP ASE server."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a83be9b-f956-44f4-9090-277d333a7b25",
+              "name": "Successful retrieval of database details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases",
+                    ":databaseName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database within the SAP ASE server."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"dbId\": 6613,\n  \"owner\": \"string\",\n  \"status\": \"suspect\",\n  \"sizeMB\": 4456.811857483954,\n  \"dataUsedMB\": 4821.805103552935,\n  \"logUsedMB\": 4017.0993588929337,\n  \"created\": \"2001-08-08T19:42:04.782Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0e2ff15-8926-4c7c-bd96-becd486f135a",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases",
+                    ":databaseName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database within the SAP ASE server."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42e2ba63-2290-4683-aaa3-50df9a681319",
+              "name": "The specified database was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "databases",
+                    ":databaseName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database within the SAP ASE server."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d3da293b-45a3-4df1-afc4-2b8de3aa3db5",
+      "name": "Devices",
+      "description": {
+        "content": "Operations for managing database devices and disk storage resources used by SAP ASE.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65fcabe4-3a03-4383-afdf-d931a9718cf3",
+          "name": "List Database Devices",
+          "request": {
+            "name": "List Database Devices",
+            "description": {
+              "content": "Retrieves a list of all database devices configured on the SAP ASE server including their physical paths, sizes, and usage information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bba012f9-94be-43ec-932b-093f7c08e3b5",
+              "name": "Successful retrieval of device list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"devices\": [\n    {\n      \"name\": \"string\",\n      \"physicalName\": \"string\",\n      \"sizeMB\": 445.4148456789042,\n      \"usedMB\": 471.1970628161222,\n      \"status\": \"online\",\n      \"deviceNumber\": 8052\n    },\n    {\n      \"name\": \"string\",\n      \"physicalName\": \"string\",\n      \"sizeMB\": 6438.005249378127,\n      \"usedMB\": 9328.398381402003,\n      \"status\": \"offline\",\n      \"deviceNumber\": 6566\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aa8c124-5486-4986-88b3-22824de323d0",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5556fb03-7712-4805-afcc-e8f2795878ca",
+      "name": "Performance",
+      "description": {
+        "content": "Operations for monitoring server performance metrics including cache statistics, lock activity, and resource utilization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f531fd0-5be3-49d4-ae1d-2f517c6f5b62",
+          "name": "Get Performance Metrics",
+          "request": {
+            "name": "Get Performance Metrics",
+            "description": {
+              "content": "Retrieves current performance metrics for the SAP ASE server including CPU utilization, disk I/O statistics, cache hit ratios, lock activity, and network throughput. Equivalent to data available from sp_sysmon.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "performance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "60",
+                  "description": "The sampling interval in seconds for performance data collection."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd4cfddf-44aa-4d9e-8946-c19916d20249",
+              "name": "Successful retrieval of performance metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverId\": \"string\",\n  \"timestamp\": \"1988-01-09T05:47:54.571Z\",\n  \"cpuUtilization\": 414.7057544797528,\n  \"ioReadsPerSec\": 6131.095354454405,\n  \"ioWritesPerSec\": 8477.844873129063,\n  \"networkBytesSentPerSec\": 9068.487939440882,\n  \"networkBytesReceivedPerSec\": 5752.70613000211,\n  \"transactionsPerSec\": 2509.91579825942,\n  \"activeProcesses\": 9309,\n  \"blockedProcesses\": 8038\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a294588-751a-47a2-9918-8d0e4faadde4",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "036fb73f-9686-4443-84c3-8da8a87ebca0",
+              "name": "The specified server was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d26317f3-d734-419b-ab23-3863b705eeda",
+          "name": "Get Cache Performance Metrics",
+          "request": {
+            "name": "Get Cache Performance Metrics",
+            "description": {
+              "content": "Retrieves detailed cache performance statistics for the SAP ASE server including data cache hit ratios, procedure cache utilization, and buffer pool statistics for each named cache.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "performance",
+                "cache"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80756e75-d79a-4b37-b241-1fe362918573",
+              "name": "Successful retrieval of cache metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance",
+                    "cache"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverId\": \"string\",\n  \"timestamp\": \"1958-04-21T12:22:35.112Z\",\n  \"dataCacheHitRatio\": 2295.104821633358,\n  \"procedureCacheHitRatio\": 8604.959502882632,\n  \"namedCaches\": [\n    {\n      \"name\": \"string\",\n      \"hitRatio\": 932.0466436699604,\n      \"sizeMB\": 27.40621612077776,\n      \"usedMB\": 3206.495069557027\n    },\n    {\n      \"name\": \"string\",\n      \"hitRatio\": 8022.014110938529,\n      \"sizeMB\": 1765.101685652878,\n      \"usedMB\": 9773.413158295638\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ee0ed98-5abb-4fe6-9550-2bfddf8ec52b",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance",
+                    "cache"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "946c8f19-7862-4b7b-ba19-095bc5dc1048",
+          "name": "Get Lock Activity Metrics",
+          "request": {
+            "name": "Get Lock Activity Metrics",
+            "description": {
+              "content": "Retrieves lock management statistics including lock contention, deadlock occurrences, lock wait times, and lock promotion activity for the SAP ASE server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "performance",
+                "locks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dbf8e85-2194-4be0-a49c-50aedca18b6b",
+              "name": "Successful retrieval of lock metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance",
+                    "locks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverId\": \"string\",\n  \"timestamp\": \"1986-12-14T14:30:48.769Z\",\n  \"totalLockRequests\": 5855,\n  \"lockWaits\": 9666,\n  \"deadlocks\": 6059,\n  \"lockPromotions\": 5893,\n  \"avgLockWaitTimeMs\": 172.5847742282216\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f10f1d2d-87ef-4ff3-bba8-2f66bd72ddc6",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "performance",
+                    "locks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8602740e-6a17-4263-ab36-ca9704237e68",
+      "name": "Servers",
+      "description": {
+        "content": "Operations for retrieving server information, status, and configuration details for SAP ASE instances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd3879ac-ca42-4f09-94f7-936609933627",
+          "name": "List ASE Servers",
+          "request": {
+            "name": "List ASE Servers",
+            "description": {
+              "content": "Retrieves a list of SAP ASE server instances available for administration and monitoring through this API endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73847278-4dcd-45c5-8fa0-0ef1b639be7d",
+              "name": "Successful retrieval of server list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"servers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"version\": \"string\",\n      \"status\": \"starting\",\n      \"host\": \"string\",\n      \"port\": 8420,\n      \"pageSize\": 8192,\n      \"startTime\": \"1997-12-01T13:18:03.239Z\",\n      \"platformDescription\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"version\": \"string\",\n      \"status\": \"shutting_down\",\n      \"host\": \"string\",\n      \"port\": 1973,\n      \"pageSize\": 8192,\n      \"startTime\": \"1999-09-08T10:31:05.829Z\",\n      \"platformDescription\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd8c273f-4a6d-4cf2-87fc-491bacccab7e",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c94550dd-37d9-483f-9e4e-8f9e8538f75a",
+          "name": "Get Server Details",
+          "request": {
+            "name": "Get Server Details",
+            "description": {
+              "content": "Retrieves detailed information about a specific SAP ASE server instance including version, status, uptime, and configuration summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b73d008-a9de-4766-8ba2-a2e2d69f1d62",
+              "name": "Successful retrieval of server details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"status\": \"running\",\n  \"host\": \"string\",\n  \"port\": 9539,\n  \"pageSize\": 16384,\n  \"startTime\": \"1948-12-19T01:18:57.360Z\",\n  \"platformDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f7c739b-d08f-4ac0-bf62-ba72cb83f01b",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "775ebaa1-5266-4265-8133-69e1f32db066",
+              "name": "The specified server was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26466eda-8cfc-4195-9540-8c332fce7db9",
+          "name": "Get Server Status",
+          "request": {
+            "name": "Get Server Status",
+            "description": {
+              "content": "Retrieves the current operational status of a SAP ASE server including uptime, active connections, CPU utilization, and memory usage metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82396dcf-fffa-45ba-94fb-64fccff84cca",
+              "name": "Successful retrieval of server status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverId\": \"string\",\n  \"status\": \"string\",\n  \"uptime\": 9098,\n  \"activeConnections\": 5556,\n  \"maxConnections\": 5593,\n  \"cpuUtilization\": 4846.583699516741,\n  \"memoryUsageMB\": 8682.251324257257,\n  \"totalMemoryMB\": 4886.621022039596,\n  \"timestamp\": \"1963-02-24T19:56:39.170Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29244249-b98e-41bc-8ba0-7dfe83ac8bc3",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "612a0f04-f752-4e19-a8bf-690861ed44b0",
+              "name": "The specified server was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ebf9ee71-dfdd-4643-92f8-0d275dd41f15",
+      "name": "Users",
+      "description": {
+        "content": "Operations for managing server logins and database users including role assignments and permission management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e6c076a-e260-4668-97cd-d68b38a184bd",
+          "name": "List Server Logins",
+          "request": {
+            "name": "List Server Logins",
+            "description": {
+              "content": "Retrieves a list of all server-level logins configured on the SAP ASE server including their roles, default databases, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "logins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50f1d93a-12d0-4948-bca4-b821d91ef36c",
+              "name": "Successful retrieval of login list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "logins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logins\": [\n    {\n      \"name\": \"string\",\n      \"suid\": 6719,\n      \"defaultDatabase\": \"string\",\n      \"status\": \"locked\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created\": \"1978-07-24T16:41:42.589Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"suid\": 7057,\n      \"defaultDatabase\": \"string\",\n      \"status\": \"locked\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created\": \"1958-11-22T00:04:25.781Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "707625b0-d28b-47a8-9f5d-d35538ea5911",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "logins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0eeb901-e91e-4ae0-bc1d-51f849b83766",
+          "name": "Create a Server Login",
+          "request": {
+            "name": "Create a Server Login",
+            "description": {
+              "content": "Creates a new server-level login on the SAP ASE server with the specified credentials, default database, and role assignments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "servers",
+                ":serverId",
+                "logins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverId",
+                  "description": "(Required) The unique identifier of the SAP ASE server instance."
+                },
+                {
+                  "description": "SAP ASE server hostname",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "HTTPS port for the REST API",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"defaultDatabase\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f25eedf0-0d4a-4f4a-b5c6-c6109b082c35",
+              "name": "Login created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "logins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"defaultDatabase\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"suid\": 8469,\n  \"defaultDatabase\": \"string\",\n  \"status\": \"active\",\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"1980-02-01T04:57:12.996Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f77a2a89-f803-491e-bd5e-6b13e39091f3",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "logins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"defaultDatabase\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5742f1f1-0490-49b6-88ed-10be6dd17800",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "servers",
+                    ":serverId",
+                    "logins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverId",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    },
+                    {
+                      "description": "SAP ASE server hostname",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "HTTPS port for the REST API",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"defaultDatabase\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "SAP ASE server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "server"
+    },
+    {
+      "description": {
+        "content": "HTTPS port for the REST API",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}:{{port}}/ase/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "522b7201-d90c-4a4e-92e6-a48459a0d70a",
+    "name": "Sybase ASE REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+      "type": "text/plain"
+    }
+  }
+}
