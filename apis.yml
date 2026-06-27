@@ -59,7 +59,7 @@ apis:
     properties:
       - type: Documentation
         url: https://help.sap.com/docs/SAP_MOBILE_PLATFORM/API
-      - type: SDK
+      - type: SDKs
         url: https://help.sap.com/docs/SAP_MOBILE_PLATFORM/SDK
   - name: SAP SQL Anywhere HTTP Web Services
     description: >-
@@ -169,7 +169,7 @@ common:
     url: https://help.sap.com/docs/SAP_ASE/791c41982ee345a19c4ec4b774222c4f/5db753f3a9c24ddcabc2581a98b99585.html
   - type: Login
     url: https://accounts.sap.com
-  - type: SignUp
+  - type: Signup
     url: https://www.sap.com/products/technology-platform/sybase-ase/trial.html
   - type: GitHubOrganization
     url: https://github.com/sqlanywhere
