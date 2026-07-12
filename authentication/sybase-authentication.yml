@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sybase-ase-rest-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using SAP ASE server login credentials.
+  sources:
+  - openapi/sybase-ase-rest-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication for API access.
+  sources:
+  - openapi/sybase-ase-rest-api-openapi.yml

@@ -141,6 +141,12 @@ apis:
       - type: GettingStarted
         url: https://blogs.sap.com/2018/02/18/first-steps-with-sap-ase-cockpit/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/sybase-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/sybase-domain-security.yml
+  - type: Authentication
+    url: authentication/sybase-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/sybase-software
   - type: Portal
