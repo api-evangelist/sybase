@@ -141,6 +141,8 @@ apis:
       - type: GettingStarted
         url: https://blogs.sap.com/2018/02/18/first-steps-with-sap-ase-cockpit/
 common:
+  - type: AgenticAccess
+    url: agentic-access/sybase-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/sybase-vulnerability-disclosure.yml
   - type: DomainSecurity
