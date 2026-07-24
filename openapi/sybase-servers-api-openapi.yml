@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Servers API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Servers
+  description: Operations for retrieving server information, status, and configuration details for SAP ASE instances.
+paths:
+  /servers:
+    get:
+      operationId: listServers
+      summary: List ASE Servers
+      description: Retrieves a list of SAP ASE server instances available for administration and monitoring through this API endpoint.
+      tags:
+      - Servers
+      responses:
+        '200':
+          description: Successful retrieval of server list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  servers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}:
+    get:
+      operationId: getServer
+      summary: Get Server Details
+      description: Retrieves detailed information about a specific SAP ASE server instance including version, status, uptime, and configuration summary.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of server details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/status:
+    get:
+      operationId: getServerStatus
+      summary: Get Server Status
+      description: Retrieves the current operational status of a SAP ASE server including uptime, active connections, CPU utilization, and memory usage metrics.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of server status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStatus'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ServerStatus:
+      type: object
+      description: Current operational status and resource utilization metrics for a SAP ASE server.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        status:
+          type: string
+          description: Current operational status.
+        uptime:
+          type: integer
+          description: Server uptime in seconds since last restart.
+        activeConnections:
+          type: integer
+          description: Number of currently active user connections.
+        maxConnections:
+          type: integer
+          description: Maximum number of configured user connections.
+        cpuUtilization:
+          type: number
+          format: double
+          description: Current CPU utilization percentage.
+        memoryUsageMB:
+          type: number
+          format: double
+          description: Current memory usage in megabytes.
+        totalMemoryMB:
+          type: number
+          format: double
+          description: Total memory allocated to the server in megabytes.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when the status was captured.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    Server:
+      type: object
+      description: Represents a SAP ASE server instance with its configuration and status information.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the server instance.
+        name:
+          type: string
+          description: The configured name of the SAP ASE server.
+        version:
+          type: string
+          description: The SAP ASE version string.
+        status:
+          type: string
+          description: Current operational status of the server.
+          enum:
+          - running
+          - stopped
+          - starting
+          - shutting_down
+          - maintenance
+        host:
+          type: string
+          description: The hostname where the server is running.
+        port:
+          type: integer
+          description: The network port the server is listening on.
+        pageSize:
+          type: integer
+          description: The logical page size in bytes configured for this server.
+          enum:
+          - 2048
+          - 4096
+          - 8192
+          - 16384
+        startTime:
+          type: string
+          format: date-time
+          description: The timestamp when the server was last started.
+        platformDescription:
+          type: string
+          description: The operating system platform description.
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE

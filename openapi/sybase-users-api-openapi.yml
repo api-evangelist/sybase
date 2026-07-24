@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Users API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Users
+  description: Operations for managing server logins and database users including role assignments and permission management.
+paths:
+  /servers/{serverId}/logins:
+    get:
+      operationId: listLogins
+      summary: List Server Logins
+      description: Retrieves a list of all server-level logins configured on the SAP ASE server including their roles, default databases, and status.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of login list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logins:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Login'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createLogin
+      summary: Create a Server Login
+      description: Creates a new server-level login on the SAP ASE server with the specified credentials, default database, and role assignments.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginCreateRequest'
+      responses:
+        '201':
+          description: Login created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Login:
+      type: object
+      description: Represents a server-level login account on the SAP ASE server.
+      properties:
+        name:
+          type: string
+          description: The login name.
+        suid:
+          type: integer
+          description: The server user identifier.
+        defaultDatabase:
+          type: string
+          description: The default database for this login.
+        status:
+          type: string
+          description: Current status of the login.
+          enum:
+          - active
+          - locked
+          - suspended
+        roles:
+          type: array
+          description: List of server roles assigned to this login.
+          items:
+            type: string
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the login was created.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    LoginCreateRequest:
+      type: object
+      description: Request body for creating a new server login.
+      required:
+      - name
+      - password
+      properties:
+        name:
+          type: string
+          description: The login name to create.
+          maxLength: 30
+        password:
+          type: string
+          description: The password for the new login.
+          format: password
+        defaultDatabase:
+          type: string
+          description: The default database to assign.
+        roles:
+          type: array
+          description: List of server roles to assign.
+          items:
+            type: string
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE

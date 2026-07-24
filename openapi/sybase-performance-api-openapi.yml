@@ -1,0 +1,250 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Performance API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Performance
+  description: Operations for monitoring server performance metrics including cache statistics, lock activity, and resource utilization.
+paths:
+  /servers/{serverId}/performance:
+    get:
+      operationId: getPerformanceMetrics
+      summary: Get Performance Metrics
+      description: Retrieves current performance metrics for the SAP ASE server including CPU utilization, disk I/O statistics, cache hit ratios, lock activity, and network throughput. Equivalent to data available from sp_sysmon.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      - name: interval
+        in: query
+        description: The sampling interval in seconds for performance data collection.
+        required: false
+        schema:
+          type: integer
+          default: 60
+          minimum: 10
+          maximum: 3600
+      responses:
+        '200':
+          description: Successful retrieval of performance metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified server was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/performance/cache:
+    get:
+      operationId: getCacheMetrics
+      summary: Get Cache Performance Metrics
+      description: Retrieves detailed cache performance statistics for the SAP ASE server including data cache hit ratios, procedure cache utilization, and buffer pool statistics for each named cache.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of cache metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/performance/locks:
+    get:
+      operationId: getLockMetrics
+      summary: Get Lock Activity Metrics
+      description: Retrieves lock management statistics including lock contention, deadlock occurrences, lock wait times, and lock promotion activity for the SAP ASE server.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of lock metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockMetrics'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+  schemas:
+    LockMetrics:
+      type: object
+      description: Lock management statistics for the SAP ASE server including contention and deadlock information.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        totalLockRequests:
+          type: integer
+          description: Total number of lock requests since last reset.
+        lockWaits:
+          type: integer
+          description: Number of times a task had to wait for a lock.
+        deadlocks:
+          type: integer
+          description: Number of deadlock occurrences.
+        lockPromotions:
+          type: integer
+          description: Number of lock escalation events.
+        avgLockWaitTimeMs:
+          type: number
+          format: double
+          description: Average lock wait time in milliseconds.
+    CacheMetrics:
+      type: object
+      description: Data cache and procedure cache performance statistics for the SAP ASE server.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        dataCacheHitRatio:
+          type: number
+          format: double
+          description: Percentage of data cache hits versus total requests.
+        procedureCacheHitRatio:
+          type: number
+          format: double
+          description: Percentage of procedure cache hits versus total requests.
+        namedCaches:
+          type: array
+          description: Performance metrics for each named data cache.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the data cache.
+              hitRatio:
+                type: number
+                format: double
+                description: Cache hit ratio for this named cache.
+              sizeMB:
+                type: number
+                format: double
+                description: Total size of this named cache in megabytes.
+              usedMB:
+                type: number
+                format: double
+                description: Space currently used in this cache in megabytes.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    PerformanceMetrics:
+      type: object
+      description: Comprehensive performance metrics for a SAP ASE server including CPU, memory, disk, and network statistics.
+      properties:
+        serverId:
+          type: string
+          description: Unique identifier of the server.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when metrics were captured.
+        cpuUtilization:
+          type: number
+          format: double
+          description: Overall CPU utilization percentage.
+        ioReadsPerSec:
+          type: number
+          format: double
+          description: Disk read operations per second.
+        ioWritesPerSec:
+          type: number
+          format: double
+          description: Disk write operations per second.
+        networkBytesSentPerSec:
+          type: number
+          format: double
+          description: Network bytes sent per second.
+        networkBytesReceivedPerSec:
+          type: number
+          format: double
+          description: Network bytes received per second.
+        transactionsPerSec:
+          type: number
+          format: double
+          description: Committed transactions per second.
+        activeProcesses:
+          type: integer
+          description: Number of currently active server processes.
+        blockedProcesses:
+          type: integer
+          description: Number of processes currently waiting on locks.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE

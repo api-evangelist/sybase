@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Databases API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Databases
+  description: Operations for managing databases within an SAP ASE server including creation, configuration, and status monitoring.
+paths:
+  /servers/{serverId}/databases:
+    get:
+      operationId: listDatabases
+      summary: List Databases
+      description: Retrieves a list of all databases on the specified SAP ASE server including their status, size, and owner information.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of database list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  databases:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Database'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createDatabase
+      summary: Create a Database
+      description: Creates a new database on the specified SAP ASE server with the provided configuration parameters including name, size, and device allocation.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatabaseCreateRequest'
+      responses:
+        '201':
+          description: Database created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /servers/{serverId}/databases/{databaseName}:
+    get:
+      operationId: getDatabase
+      summary: Get Database Details
+      description: Retrieves detailed information about a specific database including size, space usage, configuration options, and segment information.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Successful retrieval of database details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The specified database was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: The name of the database within the SAP ASE server.
+      schema:
+        type: string
+  schemas:
+    DatabaseCreateRequest:
+      type: object
+      description: Request body for creating a new database on the SAP ASE server.
+      required:
+      - name
+      - deviceName
+      - sizeMB
+      properties:
+        name:
+          type: string
+          description: The name for the new database.
+          maxLength: 30
+        deviceName:
+          type: string
+          description: The name of the database device for data storage.
+        sizeMB:
+          type: number
+          format: double
+          description: The initial size of the database in megabytes.
+          minimum: 2
+        logDeviceName:
+          type: string
+          description: The name of the device for the transaction log.
+        logSizeMB:
+          type: number
+          format: double
+          description: The initial size of the transaction log in megabytes.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    Database:
+      type: object
+      description: Represents a database within a SAP ASE server including its configuration and space usage.
+      properties:
+        name:
+          type: string
+          description: The name of the database.
+        dbId:
+          type: integer
+          description: The numeric database identifier.
+        owner:
+          type: string
+          description: The login name of the database owner.
+        status:
+          type: string
+          description: Current status of the database.
+          enum:
+          - online
+          - offline
+          - suspect
+          - loading
+          - recovering
+        sizeMB:
+          type: number
+          format: double
+          description: Total allocated size of the database in megabytes.
+        dataUsedMB:
+          type: number
+          format: double
+          description: Space used by data in megabytes.
+        logUsedMB:
+          type: number
+          format: double
+          description: Space used by the transaction log in megabytes.
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the database was created.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE

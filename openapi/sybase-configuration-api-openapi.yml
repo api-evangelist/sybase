@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Configuration API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Configuration
+  description: Operations for viewing and modifying SAP ASE server configuration parameters via sp_configure equivalents.
+paths:
+  /servers/{serverId}/configuration:
+    get:
+      operationId: getConfiguration
+      summary: Get Server Configuration
+      description: Retrieves the current server configuration parameters for the SAP ASE instance. Returns settings equivalent to those available through sp_configure, organized by configuration groups.
+      tags:
+      - Configuration
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      - name: group
+        in: query
+        description: Filter configuration parameters by group name.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateConfiguration
+      summary: Update Server Configuration
+      description: Updates one or more server configuration parameters on the SAP ASE instance. Some parameters require a server restart to take effect.
+      tags:
+      - Configuration
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigurationUpdateRequest'
+      responses:
+        '200':
+          description: Configuration updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+        '400':
+          description: Invalid configuration parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+  schemas:
+    ConfigurationUpdateRequest:
+      type: object
+      description: Request body for updating server configuration parameters.
+      required:
+      - parameters
+      properties:
+        parameters:
+          type: array
+          description: List of configuration parameters to update.
+          items:
+            type: object
+            required:
+            - name
+            - value
+            properties:
+              name:
+                type: string
+                description: The configuration parameter name.
+              value:
+                type: string
+                description: The new value to set.
+    Configuration:
+      type: object
+      description: Server configuration parameters organized by group, equivalent to sp_configure output.
+      properties:
+        groups:
+          type: array
+          description: Configuration parameter groups.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The configuration group name.
+              parameters:
+                type: array
+                description: Parameters within this group.
+                items:
+                  $ref: '#/components/schemas/ConfigParameter'
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    ConfigParameter:
+      type: object
+      description: A single server configuration parameter.
+      properties:
+        name:
+          type: string
+          description: The name of the configuration parameter.
+        runValue:
+          type: string
+          description: The current running value.
+        configValue:
+          type: string
+          description: The configured value that takes effect on restart.
+        defaultValue:
+          type: string
+          description: The default value for this parameter.
+        minimumValue:
+          type: string
+          description: The minimum allowed value.
+        maximumValue:
+          type: string
+          description: The maximum allowed value.
+        requiresRestart:
+          type: boolean
+          description: Whether changing this parameter requires a server restart.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE

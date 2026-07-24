@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: Sybase ASE REST Backups Devices API
+  description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
+  version: '16.0'
+  contact:
+    name: SAP Support
+    url: https://support.sap.com/en/product/database.html
+  termsOfService: https://www.sap.com/about/legal/terms-of-use.html
+servers:
+- url: https://{server}:{port}/ase/v1
+  description: SAP ASE REST API Server
+  variables:
+    server:
+      default: localhost
+      description: SAP ASE server hostname
+    port:
+      default: '8443'
+      description: HTTPS port for the REST API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Devices
+  description: Operations for managing database devices and disk storage resources used by SAP ASE.
+paths:
+  /servers/{serverId}/devices:
+    get:
+      operationId: listDevices
+      summary: List Database Devices
+      description: Retrieves a list of all database devices configured on the SAP ASE server including their physical paths, sizes, and usage information.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/serverId'
+      responses:
+        '200':
+          description: Successful retrieval of device list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+        '401':
+          description: Authentication credentials are missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
+    Device:
+      type: object
+      description: Represents a database device (disk resource) on the SAP ASE server.
+      properties:
+        name:
+          type: string
+          description: The logical name of the device.
+        physicalName:
+          type: string
+          description: The physical file path of the device.
+        sizeMB:
+          type: number
+          format: double
+          description: Total size of the device in megabytes.
+        usedMB:
+          type: number
+          format: double
+          description: Space currently used on the device in megabytes.
+        status:
+          type: string
+          description: Current status of the device.
+          enum:
+          - online
+          - offline
+        deviceNumber:
+          type: integer
+          description: The numeric device identifier assigned by the server.
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using SAP ASE server login credentials.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for API access.
+externalDocs:
+  description: SAP ASE Documentation
+  url: https://help.sap.com/docs/SAP_ASE
