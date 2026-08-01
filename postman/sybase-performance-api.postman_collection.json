@@ -1,0 +1,588 @@
+{
+  "info": {
+    "_postman_id": "824841f5-1d9c-4af0-892f-7adb56a50b19",
+    "name": "Sybase ASE REST Backups Performance API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:03.000Z",
+    "updatedAt": "2026-07-28T03:07:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-824841f5-1d9c-4af0-892f-7adb56a50b19"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "performance",
+              "item": [
+                {
+                  "name": "cache",
+                  "item": [
+                    {
+                      "name": "Get Cache Performance Metrics",
+                      "id": "b5f5c77d-629b-48d4-a9ba-5811ba14d975",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/performance/cache",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "performance",
+                            "cache"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0c921c35-ad49-4cb6-a27b-43c73a0537e4",
+                              "key": "serverId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the SAP ASE server instance."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed cache performance statistics for the SAP ASE server including data cache hit ratios, procedure cache utilization, and buffer pool statistics for each named cache."
+                      },
+                      "response": [
+                        {
+                          "id": "958f8579-7bef-4a26-ad47-14668e9edf9d",
+                          "name": "Successful retrieval of cache metrics",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/performance/cache",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "performance",
+                                "cache"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"serverId\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"dataCacheHitRatio\": \"<double>\",\n  \"procedureCacheHitRatio\": \"<double>\",\n  \"namedCaches\": [\n    {\n      \"name\": \"<string>\",\n      \"hitRatio\": \"<double>\",\n      \"sizeMB\": \"<double>\",\n      \"usedMB\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"hitRatio\": \"<double>\",\n      \"sizeMB\": \"<double>\",\n      \"usedMB\": \"<double>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:07:04.000Z",
+                          "updatedAt": "2026-07-28T03:07:04.000Z",
+                          "uid": "35240-958f8579-7bef-4a26-ad47-14668e9edf9d"
+                        },
+                        {
+                          "id": "b709a108-9258-49e0-ab6a-9d2965c8da45",
+                          "name": "Authentication credentials are missing or invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/performance/cache",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "performance",
+                                "cache"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:07:04.000Z",
+                          "updatedAt": "2026-07-28T03:07:04.000Z",
+                          "uid": "35240-b709a108-9258-49e0-ab6a-9d2965c8da45"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:04.000Z",
+                      "updatedAt": "2026-07-28T03:07:04.000Z",
+                      "uid": "35240-b5f5c77d-629b-48d4-a9ba-5811ba14d975"
+                    }
+                  ],
+                  "id": "9159926d-8250-4f68-ac84-95cf47123e21",
+                  "createdAt": "2026-07-28T03:07:04.000Z",
+                  "updatedAt": "2026-07-28T03:07:04.000Z",
+                  "uid": "35240-9159926d-8250-4f68-ac84-95cf47123e21"
+                },
+                {
+                  "name": "locks",
+                  "item": [
+                    {
+                      "name": "Get Lock Activity Metrics",
+                      "id": "cd247a68-8876-4274-a199-79c8913931fa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/performance/locks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "performance",
+                            "locks"
+                          ],
+                          "variable": [
+                            {
+                              "id": "00aa8e3b-2f64-4cd2-a801-395638833b65",
+                              "key": "serverId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the SAP ASE server instance."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves lock management statistics including lock contention, deadlock occurrences, lock wait times, and lock promotion activity for the SAP ASE server."
+                      },
+                      "response": [
+                        {
+                          "id": "f72f48ac-c519-4df3-91d1-70bd203bd02f",
+                          "name": "Successful retrieval of lock metrics",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/performance/locks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "performance",
+                                "locks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"serverId\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"totalLockRequests\": \"<integer>\",\n  \"lockWaits\": \"<integer>\",\n  \"deadlocks\": \"<integer>\",\n  \"lockPromotions\": \"<integer>\",\n  \"avgLockWaitTimeMs\": \"<double>\"\n}",
+                          "createdAt": "2026-07-28T03:07:04.000Z",
+                          "updatedAt": "2026-07-28T03:07:04.000Z",
+                          "uid": "35240-f72f48ac-c519-4df3-91d1-70bd203bd02f"
+                        },
+                        {
+                          "id": "4941ea53-0c90-483b-b446-3a02b7f5bf51",
+                          "name": "Authentication credentials are missing or invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/performance/locks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "performance",
+                                "locks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:07:04.000Z",
+                          "updatedAt": "2026-07-28T03:07:04.000Z",
+                          "uid": "35240-4941ea53-0c90-483b-b446-3a02b7f5bf51"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:04.000Z",
+                      "updatedAt": "2026-07-28T03:07:04.000Z",
+                      "uid": "35240-cd247a68-8876-4274-a199-79c8913931fa"
+                    }
+                  ],
+                  "id": "9d5b7c55-67d3-4f1b-bf07-9ffe170d5cba",
+                  "createdAt": "2026-07-28T03:07:04.000Z",
+                  "updatedAt": "2026-07-28T03:07:04.000Z",
+                  "uid": "35240-9d5b7c55-67d3-4f1b-bf07-9ffe170d5cba"
+                },
+                {
+                  "name": "Get Performance Metrics",
+                  "id": "9933ad3c-ed93-45d7-9920-5c6ab522db73",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/performance?interval=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "performance"
+                      ],
+                      "query": [
+                        {
+                          "description": "The sampling interval in seconds for performance data collection.",
+                          "key": "interval",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "9417a9c2-8be4-4e8e-a600-86ea94320620",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves current performance metrics for the SAP ASE server including CPU utilization, disk I/O statistics, cache hit ratios, lock activity, and network throughput. Equivalent to data available from sp_sysmon."
+                  },
+                  "response": [
+                    {
+                      "id": "a2e26685-6ba3-4ed7-8016-4ca05d356bcf",
+                      "name": "Successful retrieval of performance metrics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/performance?interval=60",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "performance"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sampling interval in seconds for performance data collection.",
+                              "key": "interval",
+                              "value": "60"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"cpuUtilization\": \"<double>\",\n  \"ioReadsPerSec\": \"<double>\",\n  \"ioWritesPerSec\": \"<double>\",\n  \"networkBytesSentPerSec\": \"<double>\",\n  \"networkBytesReceivedPerSec\": \"<double>\",\n  \"transactionsPerSec\": \"<double>\",\n  \"activeProcesses\": \"<integer>\",\n  \"blockedProcesses\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:07:04.000Z",
+                      "updatedAt": "2026-07-28T03:07:04.000Z",
+                      "uid": "35240-a2e26685-6ba3-4ed7-8016-4ca05d356bcf"
+                    },
+                    {
+                      "id": "05498606-f25e-41dd-ace0-96583650c283",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/performance?interval=60",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "performance"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sampling interval in seconds for performance data collection.",
+                              "key": "interval",
+                              "value": "60"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:04.000Z",
+                      "updatedAt": "2026-07-28T03:07:04.000Z",
+                      "uid": "35240-05498606-f25e-41dd-ace0-96583650c283"
+                    },
+                    {
+                      "id": "ed299344-f1f8-4bae-9d5c-64d4055a9c32",
+                      "name": "The specified server was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/performance?interval=60",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "performance"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sampling interval in seconds for performance data collection.",
+                              "key": "interval",
+                              "value": "60"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:04.000Z",
+                      "updatedAt": "2026-07-28T03:07:04.000Z",
+                      "uid": "35240-ed299344-f1f8-4bae-9d5c-64d4055a9c32"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:04.000Z",
+                  "updatedAt": "2026-07-28T03:07:04.000Z",
+                  "uid": "35240-9933ad3c-ed93-45d7-9920-5c6ab522db73"
+                }
+              ],
+              "id": "ecb6bc0c-c3fd-49cc-afce-e8492275eae0",
+              "createdAt": "2026-07-28T03:07:04.000Z",
+              "updatedAt": "2026-07-28T03:07:04.000Z",
+              "uid": "35240-ecb6bc0c-c3fd-49cc-afce-e8492275eae0"
+            }
+          ],
+          "id": "d982259a-bb3f-44dd-8ff0-fd82fee3a73f",
+          "createdAt": "2026-07-28T03:07:04.000Z",
+          "updatedAt": "2026-07-28T03:07:04.000Z",
+          "uid": "35240-d982259a-bb3f-44dd-8ff0-fd82fee3a73f"
+        }
+      ],
+      "id": "e07091b9-2d14-4219-9be1-4ba1127a5179",
+      "createdAt": "2026-07-28T03:07:04.000Z",
+      "updatedAt": "2026-07-28T03:07:04.000Z",
+      "uid": "35240-e07091b9-2d14-4219-9be1-4ba1127a5179"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}

@@ -2,10 +2,6 @@
   "repo": "sybase",
   "feeds": [
     {
-      "source": "https://community.sap.com/khhcw49343/rss/Community?interaction.style=forum",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://support.sap.com/swdc",
       "feed_url": "https://support.sap.com/swdc",
       "title": "",
@@ -14,5 +10,5 @@
     }
   ],
   "post_count": 84,
-  "fetched": "2026-07-11T11:50:51Z"
+  "fetched": "2026-08-01T15:49:00Z"
 }

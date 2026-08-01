@@ -1,0 +1,209 @@
+{
+  "info": {
+    "_postman_id": "af757814-0189-44ca-bf3f-2ca7f848b9e3",
+    "name": "Sybase ASE REST Backups Devices API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:02.000Z",
+    "updatedAt": "2026-07-28T03:07:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-af757814-0189-44ca-bf3f-2ca7f848b9e3"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "devices",
+              "item": [
+                {
+                  "name": "List Database Devices",
+                  "id": "9943182f-9bee-4a68-a778-e2a8cb23c60b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/devices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "devices"
+                      ],
+                      "variable": [
+                        {
+                          "id": "525f6644-a97f-41a3-84c4-7a6584bd1842",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all database devices configured on the SAP ASE server including their physical paths, sizes, and usage information."
+                  },
+                  "response": [
+                    {
+                      "id": "29270fe8-2b0b-4c7e-90ba-0c2149b05603",
+                      "name": "Successful retrieval of device list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/devices",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "devices"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"devices\": [\n    {\n      \"name\": \"<string>\",\n      \"physicalName\": \"<string>\",\n      \"sizeMB\": \"<double>\",\n      \"usedMB\": \"<double>\",\n      \"status\": \"offline\",\n      \"deviceNumber\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"physicalName\": \"<string>\",\n      \"sizeMB\": \"<double>\",\n      \"usedMB\": \"<double>\",\n      \"status\": \"online\",\n      \"deviceNumber\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:07:03.000Z",
+                      "updatedAt": "2026-07-28T03:07:03.000Z",
+                      "uid": "35240-29270fe8-2b0b-4c7e-90ba-0c2149b05603"
+                    },
+                    {
+                      "id": "5f6b7c68-b524-460e-822f-e9574abca44b",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/devices",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "devices"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:03.000Z",
+                      "updatedAt": "2026-07-28T03:07:03.000Z",
+                      "uid": "35240-5f6b7c68-b524-460e-822f-e9574abca44b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:03.000Z",
+                  "updatedAt": "2026-07-28T03:07:03.000Z",
+                  "uid": "35240-9943182f-9bee-4a68-a778-e2a8cb23c60b"
+                }
+              ],
+              "id": "cf5b0b21-89c1-47bc-99c5-c18dbaf9451f",
+              "createdAt": "2026-07-28T03:07:03.000Z",
+              "updatedAt": "2026-07-28T03:07:03.000Z",
+              "uid": "35240-cf5b0b21-89c1-47bc-99c5-c18dbaf9451f"
+            }
+          ],
+          "id": "8877be7a-221b-4ba6-95ba-4f722282fb0a",
+          "createdAt": "2026-07-28T03:07:03.000Z",
+          "updatedAt": "2026-07-28T03:07:03.000Z",
+          "uid": "35240-8877be7a-221b-4ba6-95ba-4f722282fb0a"
+        }
+      ],
+      "id": "245b47e2-571e-4ed8-b827-8b7e88394953",
+      "createdAt": "2026-07-28T03:07:03.000Z",
+      "updatedAt": "2026-07-28T03:07:03.000Z",
+      "uid": "35240-245b47e2-571e-4ed8-b827-8b7e88394953"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}

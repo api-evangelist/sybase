@@ -1,0 +1,474 @@
+{
+  "info": {
+    "_postman_id": "57020e34-b55d-47b2-9f7b-ba0a2a258007",
+    "name": "Sybase ASE REST Backups API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:59.000Z",
+    "updatedAt": "2026-07-28T03:06:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57020e34-b55d-47b2-9f7b-ba0a2a258007"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "backups",
+              "item": [
+                {
+                  "name": "List Backup History",
+                  "id": "a6730679-62e3-4052-acca-65d7666758ac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/backups?databaseName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "backups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter backup history by database name.",
+                          "key": "databaseName",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "63426ff6-a1c6-4c60-9a26-3fef9b26ace4",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the backup history for the specified SAP ASE server including completed, in-progress, and scheduled backup operations."
+                  },
+                  "response": [
+                    {
+                      "id": "a44b2071-12c9-4511-959e-268e39ed02be",
+                      "name": "Successful retrieval of backup history",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/backups?databaseName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "backups"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter backup history by database name.",
+                              "key": "databaseName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"backups\": [\n    {\n      \"id\": \"<string>\",\n      \"databaseName\": \"<string>\",\n      \"type\": \"incremental\",\n      \"status\": \"in_progress\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"sizeMB\": \"<double>\",\n      \"deviceName\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"databaseName\": \"<string>\",\n      \"type\": \"full\",\n      \"status\": \"in_progress\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"sizeMB\": \"<double>\",\n      \"deviceName\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:59.000Z",
+                      "updatedAt": "2026-07-28T03:06:59.000Z",
+                      "uid": "35240-a44b2071-12c9-4511-959e-268e39ed02be"
+                    },
+                    {
+                      "id": "6f60dc61-241e-4501-95d8-ba887a167870",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/backups?databaseName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "backups"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter backup history by database name.",
+                              "key": "databaseName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:59.000Z",
+                      "updatedAt": "2026-07-28T03:06:59.000Z",
+                      "uid": "35240-6f60dc61-241e-4501-95d8-ba887a167870"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:59.000Z",
+                  "updatedAt": "2026-07-28T03:06:59.000Z",
+                  "uid": "35240-a6730679-62e3-4052-acca-65d7666758ac"
+                },
+                {
+                  "name": "Initiate a Database Backup",
+                  "id": "9656b6cf-f19c-48ce-b639-c0f80c58ed4b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"full\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/backups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "backups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a68812a1-856e-4a48-9f7f-9c35b2aed814",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Initiates a new backup operation for the specified database on the SAP ASE server. Supports full database dumps, transaction log dumps, and incremental backups."
+                  },
+                  "response": [
+                    {
+                      "id": "ba7e18c6-2a6e-40d2-8a2e-ea057dc0e9cd",
+                      "name": "Backup operation initiated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"full\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"databaseName\": \"<string>\",\n  \"type\": \"transaction_log\",\n  \"status\": \"in_progress\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sizeMB\": \"<double>\",\n  \"deviceName\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:59.000Z",
+                      "updatedAt": "2026-07-28T03:06:59.000Z",
+                      "uid": "35240-ba7e18c6-2a6e-40d2-8a2e-ea057dc0e9cd"
+                    },
+                    {
+                      "id": "5b8eb352-f18b-4999-9d99-fb356b7d4b6f",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"full\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:59.000Z",
+                      "updatedAt": "2026-07-28T03:06:59.000Z",
+                      "uid": "35240-5b8eb352-f18b-4999-9d99-fb356b7d4b6f"
+                    },
+                    {
+                      "id": "0742de1d-588e-4cd3-8033-802305634c5b",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"databaseName\": \"<string>\",\n  \"type\": \"full\",\n  \"deviceName\": \"<string>\",\n  \"compress\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:59.000Z",
+                      "updatedAt": "2026-07-28T03:06:59.000Z",
+                      "uid": "35240-0742de1d-588e-4cd3-8033-802305634c5b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:59.000Z",
+                  "updatedAt": "2026-07-28T03:06:59.000Z",
+                  "uid": "35240-9656b6cf-f19c-48ce-b639-c0f80c58ed4b"
+                }
+              ],
+              "id": "feba7bd7-8b9d-40d3-905e-79aefbb2ce3b",
+              "createdAt": "2026-07-28T03:06:59.000Z",
+              "updatedAt": "2026-07-28T03:06:59.000Z",
+              "uid": "35240-feba7bd7-8b9d-40d3-905e-79aefbb2ce3b"
+            }
+          ],
+          "id": "82605e97-32b5-4bf1-b50d-498f6dbc4329",
+          "createdAt": "2026-07-28T03:06:59.000Z",
+          "updatedAt": "2026-07-28T03:06:59.000Z",
+          "uid": "35240-82605e97-32b5-4bf1-b50d-498f6dbc4329"
+        }
+      ],
+      "id": "8b25a62e-d748-44e8-b4e6-b7b5bf39c107",
+      "createdAt": "2026-07-28T03:06:59.000Z",
+      "updatedAt": "2026-07-28T03:06:59.000Z",
+      "uid": "35240-8b25a62e-d748-44e8-b4e6-b7b5bf39c107"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}

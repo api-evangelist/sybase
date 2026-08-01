@@ -1,0 +1,26 @@
+{
+  "provider": "sybase",
+  "sources": [
+    "sybase-backups-api-openapi.yml",
+    "sybase-configuration-api-openapi.yml",
+    "sybase-databases-api-openapi.yml",
+    "sybase-devices-api-openapi.yml",
+    "sybase-performance-api-openapi.yml",
+    "sybase-servers-api-openapi.yml",
+    "sybase-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "sybase-backups-api-openapi.yml",
+    "sybase-configuration-api-openapi.yml",
+    "sybase-databases-api-openapi.yml",
+    "sybase-devices-api-openapi.yml",
+    "sybase-performance-api-openapi.yml",
+    "sybase-servers-api-openapi.yml",
+    "sybase-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

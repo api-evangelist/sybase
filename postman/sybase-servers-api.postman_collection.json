@@ -1,0 +1,557 @@
+{
+  "info": {
+    "_postman_id": "203f580e-0091-4649-8b02-e5b4bae9e3b9",
+    "name": "Sybase ASE REST Backups Servers API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:04.000Z",
+    "updatedAt": "2026-07-28T03:07:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-203f580e-0091-4649-8b02-e5b4bae9e3b9"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Get Server Status",
+                  "id": "93d205ca-a46b-4476-8d2e-3c4a7b8c188c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "118856eb-f981-4357-8397-9b1853cd8eb1",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the current operational status of a SAP ASE server including uptime, active connections, CPU utilization, and memory usage metrics."
+                  },
+                  "response": [
+                    {
+                      "id": "7a571602-44a5-4275-8868-b1f2273153c7",
+                      "name": "Successful retrieval of server status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"uptime\": \"<integer>\",\n  \"activeConnections\": \"<integer>\",\n  \"maxConnections\": \"<integer>\",\n  \"cpuUtilization\": \"<double>\",\n  \"memoryUsageMB\": \"<double>\",\n  \"totalMemoryMB\": \"<double>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:07:05.000Z",
+                      "updatedAt": "2026-07-28T03:07:05.000Z",
+                      "uid": "35240-7a571602-44a5-4275-8868-b1f2273153c7"
+                    },
+                    {
+                      "id": "5b63d8c7-e868-495b-b4f1-a9872b4d765a",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:05.000Z",
+                      "updatedAt": "2026-07-28T03:07:05.000Z",
+                      "uid": "35240-5b63d8c7-e868-495b-b4f1-a9872b4d765a"
+                    },
+                    {
+                      "id": "1f4dda55-45c2-4692-955a-7ab376a41c7c",
+                      "name": "The specified server was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:05.000Z",
+                      "updatedAt": "2026-07-28T03:07:05.000Z",
+                      "uid": "35240-1f4dda55-45c2-4692-955a-7ab376a41c7c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:05.000Z",
+                  "updatedAt": "2026-07-28T03:07:05.000Z",
+                  "uid": "35240-93d205ca-a46b-4476-8d2e-3c4a7b8c188c"
+                }
+              ],
+              "id": "923be1a0-2615-404f-bc4d-a8bd85d9f107",
+              "createdAt": "2026-07-28T03:07:05.000Z",
+              "updatedAt": "2026-07-28T03:07:05.000Z",
+              "uid": "35240-923be1a0-2615-404f-bc4d-a8bd85d9f107"
+            },
+            {
+              "name": "Get Server Details",
+              "id": "36d0275d-1e04-4aaf-8b33-8f8f29024d7f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/servers/:serverId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "servers",
+                    ":serverId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a7f4f3ee-2904-41c7-bbaf-3789b2054aae",
+                      "key": "serverId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the SAP ASE server instance."
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about a specific SAP ASE server instance including version, status, uptime, and configuration summary."
+              },
+              "response": [
+                {
+                  "id": "2822317d-3fc3-4c73-afa3-87fff08c43c0",
+                  "name": "Successful retrieval of server details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serverId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"starting\",\n  \"host\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"pageSize\": 16384,\n  \"startTime\": \"<dateTime>\",\n  \"platformDescription\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:07:05.000Z",
+                  "updatedAt": "2026-07-28T03:07:05.000Z",
+                  "uid": "35240-2822317d-3fc3-4c73-afa3-87fff08c43c0"
+                },
+                {
+                  "id": "e4b9bf76-5a4d-4fe3-883d-939db11a5b9b",
+                  "name": "Authentication credentials are missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serverId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:07:05.000Z",
+                  "updatedAt": "2026-07-28T03:07:05.000Z",
+                  "uid": "35240-e4b9bf76-5a4d-4fe3-883d-939db11a5b9b"
+                },
+                {
+                  "id": "72cb91e6-0546-4340-b2d1-28911470aa20",
+                  "name": "The specified server was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serverId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:07:05.000Z",
+                  "updatedAt": "2026-07-28T03:07:05.000Z",
+                  "uid": "35240-72cb91e6-0546-4340-b2d1-28911470aa20"
+                }
+              ],
+              "createdAt": "2026-07-28T03:07:05.000Z",
+              "updatedAt": "2026-07-28T03:07:05.000Z",
+              "uid": "35240-36d0275d-1e04-4aaf-8b33-8f8f29024d7f"
+            }
+          ],
+          "id": "98ef9e80-82f6-477c-bb96-b7d15c58d98b",
+          "createdAt": "2026-07-28T03:07:05.000Z",
+          "updatedAt": "2026-07-28T03:07:05.000Z",
+          "uid": "35240-98ef9e80-82f6-477c-bb96-b7d15c58d98b"
+        },
+        {
+          "name": "List ASE Servers",
+          "id": "9429e571-dd38-46e3-872d-75e964fdbe70",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/servers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "servers"
+              ]
+            },
+            "description": "Retrieves a list of SAP ASE server instances available for administration and monitoring through this API endpoint."
+          },
+          "response": [
+            {
+              "id": "d2401f0f-6e14-4179-9ebf-be511f93afa3",
+              "name": "Successful retrieval of server list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/servers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "servers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"servers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"maintenance\",\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"pageSize\": 16384,\n      \"startTime\": \"<dateTime>\",\n      \"platformDescription\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"stopped\",\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"pageSize\": 2048,\n      \"startTime\": \"<dateTime>\",\n      \"platformDescription\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:07:05.000Z",
+              "updatedAt": "2026-07-28T03:07:05.000Z",
+              "uid": "35240-d2401f0f-6e14-4179-9ebf-be511f93afa3"
+            },
+            {
+              "id": "95432aa8-cad7-49b6-ac33-2286b0519f1a",
+              "name": "Authentication credentials are missing or invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/servers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "servers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:07:05.000Z",
+              "updatedAt": "2026-07-28T03:07:05.000Z",
+              "uid": "35240-95432aa8-cad7-49b6-ac33-2286b0519f1a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:07:05.000Z",
+          "updatedAt": "2026-07-28T03:07:05.000Z",
+          "uid": "35240-9429e571-dd38-46e3-872d-75e964fdbe70"
+        }
+      ],
+      "id": "9012eed5-a8ac-4adf-ae2e-e93db2cb15e9",
+      "createdAt": "2026-07-28T03:07:05.000Z",
+      "updatedAt": "2026-07-28T03:07:05.000Z",
+      "uid": "35240-9012eed5-a8ac-4adf-ae2e-e93db2cb15e9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}

@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "ed198a09-5c21-4028-89c1-387deba0dca3",
+    "name": "Sybase ASE REST Backups Databases API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:01.000Z",
+    "updatedAt": "2026-07-28T03:07:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ed198a09-5c21-4028-89c1-387deba0dca3"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "Get Database Details",
+                      "id": "103fc1a0-f55e-464f-bb3b-a5db452cac7b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases/:databaseName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases",
+                            ":databaseName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0c6ef6bc-c350-49e8-8831-8987af334378",
+                              "key": "serverId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the SAP ASE server instance."
+                            },
+                            {
+                              "id": "4de24a66-c812-4c75-90ad-db818e323d5d",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the database within the SAP ASE server."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific database including size, space usage, configuration options, and segment information."
+                      },
+                      "response": [
+                        {
+                          "id": "4d319157-1bd2-45a4-b107-cb33b946f8f9",
+                          "name": "Successful retrieval of database details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"dbId\": \"<integer>\",\n  \"owner\": \"<string>\",\n  \"status\": \"recovering\",\n  \"sizeMB\": \"<double>\",\n  \"dataUsedMB\": \"<double>\",\n  \"logUsedMB\": \"<double>\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:07:01.000Z",
+                          "updatedAt": "2026-07-28T03:07:01.000Z",
+                          "uid": "35240-4d319157-1bd2-45a4-b107-cb33b946f8f9"
+                        },
+                        {
+                          "id": "f8856f7a-4ba4-4e16-8ea8-1ef077c8c77c",
+                          "name": "Authentication credentials are missing or invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:07:01.000Z",
+                          "updatedAt": "2026-07-28T03:07:01.000Z",
+                          "uid": "35240-f8856f7a-4ba4-4e16-8ea8-1ef077c8c77c"
+                        },
+                        {
+                          "id": "68102c28-0dd4-4c51-a406-6adacb6952a0",
+                          "name": "The specified database was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/servers/:serverId/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "servers",
+                                ":serverId",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverId"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:07:01.000Z",
+                          "updatedAt": "2026-07-28T03:07:01.000Z",
+                          "uid": "35240-68102c28-0dd4-4c51-a406-6adacb6952a0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-103fc1a0-f55e-464f-bb3b-a5db452cac7b"
+                    }
+                  ],
+                  "id": "83d132b6-dfa7-429b-850d-6b2fba600487",
+                  "createdAt": "2026-07-28T03:07:01.000Z",
+                  "updatedAt": "2026-07-28T03:07:01.000Z",
+                  "uid": "35240-83d132b6-dfa7-429b-850d-6b2fba600487"
+                },
+                {
+                  "name": "List Databases",
+                  "id": "749ff647-7c1f-411d-ac4e-e411825dab27",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/databases",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "databases"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9a5ddf02-6d0e-47a7-abb7-b0f8f56a665a",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all databases on the specified SAP ASE server including their status, size, and owner information."
+                  },
+                  "response": [
+                    {
+                      "id": "c6974f9b-9cca-41bc-9946-2c8570c3ac19",
+                      "name": "Successful retrieval of database list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"databases\": [\n    {\n      \"name\": \"<string>\",\n      \"dbId\": \"<integer>\",\n      \"owner\": \"<string>\",\n      \"status\": \"offline\",\n      \"sizeMB\": \"<double>\",\n      \"dataUsedMB\": \"<double>\",\n      \"logUsedMB\": \"<double>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dbId\": \"<integer>\",\n      \"owner\": \"<string>\",\n      \"status\": \"online\",\n      \"sizeMB\": \"<double>\",\n      \"dataUsedMB\": \"<double>\",\n      \"logUsedMB\": \"<double>\",\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-c6974f9b-9cca-41bc-9946-2c8570c3ac19"
+                    },
+                    {
+                      "id": "bb7c2fe0-afa5-4e01-8bb6-f45b1e9b28bc",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-bb7c2fe0-afa5-4e01-8bb6-f45b1e9b28bc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:01.000Z",
+                  "updatedAt": "2026-07-28T03:07:01.000Z",
+                  "uid": "35240-749ff647-7c1f-411d-ac4e-e411825dab27"
+                },
+                {
+                  "name": "Create a Database",
+                  "id": "b098ac3e-6909-4f3c-a8b3-f4221534c9ef",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/databases",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "databases"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4e301d6e-772d-43e1-a3cc-e3245ea4220b",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new database on the specified SAP ASE server with the provided configuration parameters including name, size, and device allocation."
+                  },
+                  "response": [
+                    {
+                      "id": "e58979e2-2c33-4853-831a-5da85032b558",
+                      "name": "Database created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"dbId\": \"<integer>\",\n  \"owner\": \"<string>\",\n  \"status\": \"recovering\",\n  \"sizeMB\": \"<double>\",\n  \"dataUsedMB\": \"<double>\",\n  \"logUsedMB\": \"<double>\",\n  \"created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-e58979e2-2c33-4853-831a-5da85032b558"
+                    },
+                    {
+                      "id": "a16c4242-8143-4bbb-a0f7-6fabbdbde1f0",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-a16c4242-8143-4bbb-a0f7-6fabbdbde1f0"
+                    },
+                    {
+                      "id": "8d9078a5-0bb2-46ff-be2a-78356eca970a",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"sizeMB\": \"<double>\",\n  \"logDeviceName\": \"<string>\",\n  \"logSizeMB\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:01.000Z",
+                      "updatedAt": "2026-07-28T03:07:01.000Z",
+                      "uid": "35240-8d9078a5-0bb2-46ff-be2a-78356eca970a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:01.000Z",
+                  "updatedAt": "2026-07-28T03:07:01.000Z",
+                  "uid": "35240-b098ac3e-6909-4f3c-a8b3-f4221534c9ef"
+                }
+              ],
+              "id": "da20f2be-8a70-4cb1-bb32-fce4c2b33e7f",
+              "createdAt": "2026-07-28T03:07:01.000Z",
+              "updatedAt": "2026-07-28T03:07:01.000Z",
+              "uid": "35240-da20f2be-8a70-4cb1-bb32-fce4c2b33e7f"
+            }
+          ],
+          "id": "ffdfb4e1-4085-48da-b510-53e606812dc1",
+          "createdAt": "2026-07-28T03:07:01.000Z",
+          "updatedAt": "2026-07-28T03:07:01.000Z",
+          "uid": "35240-ffdfb4e1-4085-48da-b510-53e606812dc1"
+        }
+      ],
+      "id": "22fbea0d-a92e-4e87-9392-83c5956b5560",
+      "createdAt": "2026-07-28T03:07:01.000Z",
+      "updatedAt": "2026-07-28T03:07:01.000Z",
+      "uid": "35240-22fbea0d-a92e-4e87-9392-83c5956b5560"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}

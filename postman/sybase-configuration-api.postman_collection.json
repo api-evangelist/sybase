@@ -1,0 +1,474 @@
+{
+  "info": {
+    "_postman_id": "1e2d2830-d237-4788-8261-e57b281bad9b",
+    "name": "Sybase ASE REST Backups Configuration API",
+    "description": "REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.\n\nContact Support:\n Name: SAP Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:00.000Z",
+    "updatedAt": "2026-07-28T03:07:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1e2d2830-d237-4788-8261-e57b281bad9b"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "configuration",
+              "item": [
+                {
+                  "name": "Get Server Configuration",
+                  "id": "4f51d1be-3040-4a24-9e0f-bcd339cca1d0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/configuration?group=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "configuration"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter configuration parameters by group name.",
+                          "key": "group",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e79cdc8c-495c-4dc9-a2d2-f0f1f5e763de",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the current server configuration parameters for the SAP ASE instance. Returns settings equivalent to those available through sp_configure, organized by configuration groups."
+                  },
+                  "response": [
+                    {
+                      "id": "77a661c6-3647-40e3-8fcc-8a2abe81f68b",
+                      "name": "Successful retrieval of server configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/configuration?group=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "configuration"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter configuration parameters by group name.",
+                              "key": "group",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"groups\": [\n    {\n      \"name\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:07:00.000Z",
+                      "updatedAt": "2026-07-28T03:07:00.000Z",
+                      "uid": "35240-77a661c6-3647-40e3-8fcc-8a2abe81f68b"
+                    },
+                    {
+                      "id": "f9329003-af66-4ec2-8db8-ae10863cd6a4",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/configuration?group=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "configuration"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter configuration parameters by group name.",
+                              "key": "group",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:00.000Z",
+                      "updatedAt": "2026-07-28T03:07:00.000Z",
+                      "uid": "35240-f9329003-af66-4ec2-8db8-ae10863cd6a4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:00.000Z",
+                  "updatedAt": "2026-07-28T03:07:00.000Z",
+                  "uid": "35240-4f51d1be-3040-4a24-9e0f-bcd339cca1d0"
+                },
+                {
+                  "name": "Update Server Configuration",
+                  "id": "e731c675-c888-475d-912d-7e71fc0d7ecf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverId/configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverId",
+                        "configuration"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b1fb3189-c360-4798-8c6c-97f2c5dfc552",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SAP ASE server instance."
+                        }
+                      ]
+                    },
+                    "description": "Updates one or more server configuration parameters on the SAP ASE instance. Some parameters require a server restart to take effect."
+                  },
+                  "response": [
+                    {
+                      "id": "abca431b-5613-4bde-a23e-30ad6d2adbce",
+                      "name": "Configuration updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "configuration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"groups\": [\n    {\n      \"name\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"runValue\": \"<string>\",\n          \"configValue\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"minimumValue\": \"<string>\",\n          \"maximumValue\": \"<string>\",\n          \"requiresRestart\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:07:00.000Z",
+                      "updatedAt": "2026-07-28T03:07:00.000Z",
+                      "uid": "35240-abca431b-5613-4bde-a23e-30ad6d2adbce"
+                    },
+                    {
+                      "id": "039e1a04-acf0-47fb-b96c-8a64c80db7e8",
+                      "name": "Invalid configuration parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "configuration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:00.000Z",
+                      "updatedAt": "2026-07-28T03:07:00.000Z",
+                      "uid": "35240-039e1a04-acf0-47fb-b96c-8a64c80db7e8"
+                    },
+                    {
+                      "id": "c68277e3-4569-418d-9b89-97f3eb461967",
+                      "name": "Authentication credentials are missing or invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverId/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverId",
+                            "configuration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:00.000Z",
+                      "updatedAt": "2026-07-28T03:07:00.000Z",
+                      "uid": "35240-c68277e3-4569-418d-9b89-97f3eb461967"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:00.000Z",
+                  "updatedAt": "2026-07-28T03:07:00.000Z",
+                  "uid": "35240-e731c675-c888-475d-912d-7e71fc0d7ecf"
+                }
+              ],
+              "id": "98889914-a925-4f20-a543-e55f1b7414f1",
+              "createdAt": "2026-07-28T03:07:00.000Z",
+              "updatedAt": "2026-07-28T03:07:00.000Z",
+              "uid": "35240-98889914-a925-4f20-a543-e55f1b7414f1"
+            }
+          ],
+          "id": "b4568d46-5a5b-44ba-8387-e5a7bf10c597",
+          "createdAt": "2026-07-28T03:07:00.000Z",
+          "updatedAt": "2026-07-28T03:07:00.000Z",
+          "uid": "35240-b4568d46-5a5b-44ba-8387-e5a7bf10c597"
+        }
+      ],
+      "id": "89da98b7-dcab-49b9-9612-b473bc01fd17",
+      "createdAt": "2026-07-28T03:07:00.000Z",
+      "updatedAt": "2026-07-28T03:07:00.000Z",
+      "uid": "35240-89da98b7-dcab-49b9-9612-b473bc01fd17"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}:{{port}}/ase/v1"
+    }
+  ]
+}
