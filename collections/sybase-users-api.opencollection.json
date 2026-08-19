@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sybase ASE REST Backups Users API",
+    "version": "16.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Server Logins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/logins",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all server-level logins configured on the SAP ASE server including their roles, default databases, and status."
+        },
+        {
+          "info": {
+            "name": "Create a Server Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/logins",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new server-level login on the SAP ASE server with the specified credentials, default database, and role assignments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

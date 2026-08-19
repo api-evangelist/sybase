@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sybase ASE REST Backups Devices API",
+    "version": "16.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/devices",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all database devices configured on the SAP ASE server including their physical paths, sizes, and usage information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

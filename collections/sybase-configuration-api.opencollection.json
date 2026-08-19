@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sybase ASE REST Backups Configuration API",
+    "version": "16.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/configuration",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "Filter configuration parameters by group name."
+              }
+            ]
+          },
+          "docs": "Retrieves the current server configuration parameters for the SAP ASE instance. Returns settings equivalent to those available through sp_configure, organized by configuration groups."
+        },
+        {
+          "info": {
+            "name": "Update Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/configuration",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more server configuration parameters on the SAP ASE instance. Some parameters require a server restart to take effect."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

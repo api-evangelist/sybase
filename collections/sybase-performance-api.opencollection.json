@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sybase ASE REST Backups Performance API",
+    "version": "16.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Performance Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/performance",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "The sampling interval in seconds for performance data collection."
+              }
+            ]
+          },
+          "docs": "Retrieves current performance metrics for the SAP ASE server including CPU utilization, disk I/O statistics, cache hit ratios, lock activity, and network throughput. Equivalent to data available from sp_sysmon."
+        },
+        {
+          "info": {
+            "name": "Get Cache Performance Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/performance/cache",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed cache performance statistics for the SAP ASE server including data cache hit ratios, procedure cache utilization, and buffer pool statistics for each named cache."
+        },
+        {
+          "info": {
+            "name": "Get Lock Activity Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/performance/locks",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ]
+          },
+          "docs": "Retrieves lock management statistics including lock contention, deadlock occurrences, lock wait times, and lock promotion activity for the SAP ASE server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

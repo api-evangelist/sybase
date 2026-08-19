@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sybase ASE REST Backups API",
+    "version": "16.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Backups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Backup History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/backups",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "query",
+                "description": "Filter backup history by database name."
+              }
+            ]
+          },
+          "docs": "Retrieves the backup history for the specified SAP ASE server including completed, in-progress, and scheduled backup operations."
+        },
+        {
+          "info": {
+            "name": "Initiate a Database Backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/ase/v1/servers/:serverId/backups",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP ASE server instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a new backup operation for the specified database on the SAP ASE server. Supports full database dumps, transaction log dumps, and incremental backups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
