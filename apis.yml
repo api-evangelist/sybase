@@ -26,7 +26,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://www.sap.com/dam/application/shared/logos/sap-logo.svg
+image: ''
 tags:
 - Database
 - Enterprise
