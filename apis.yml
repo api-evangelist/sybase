@@ -167,6 +167,8 @@ apis:
   humanURL: https://help.sap.com/docs/SAP_ASE
   baseURL: https://{server}:{port}/ase/v1
   tags:
+  - Database
+  tags_raw:
   - Databases
   properties:
   - type: OpenAPI
