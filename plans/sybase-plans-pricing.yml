@@ -1,53 +1,17 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Sybase
-providerId: sybase
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-tags:
-  - Database
-  - Enterprise
-  - SAP
-  - SQL
-description: Sybase, now part of SAP, ships enterprise database products (notably SAP Adaptive Server
-  Enterprise / ASE, SQL Anywhere, IQ, Replication Server). Licensing is enterprise SAP-style — contract-sales
-  with options for perpetual, term, and subscription licenses sold by core or named-user metric. There
-  is no public per-call API tier.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.sap.com/products/data-cloud/sybase-ase.html
 sources:
-  - https://www.sap.com/products/technology-platform/sybase-ase.html
-notes: 'Reconciliation marked false: SAP does not publish a public price list for SAP/Sybase ASE. Pricing
-  is via SAP sales and partners and varies by region, license metric (core/named user), and edition.
-  No developer/API per-call tier exists.'
-plans:
-  - id: sybase-contact-sales
-    name: Contact Sales
-    type: enterprise
-    description: SAP Sybase ASE and related Sybase products are sold under enterprise SAP licensing
-      (perpetual, term, or subscription) with maintenance and support attached. Pricing is by SAP sales
-      and partner network.
-    entries:
-      - label: License
-        name: license
-        type: subscription
-        metric: varies
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: SAP Adaptive Server Enterprise (ASE)
-      - name: SAP SQL Anywhere
-      - name: SAP IQ
-      - name: SAP Replication Server
-      - name: Perpetual / Term / Subscription Licensing Options
-      - name: SAP Enterprise Support
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- https://www.sap.com/products/data-cloud/sybase-ase.html
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: none
+published: false
+note: No numeric price is published on the pricing page; Product overview page for SAP Adaptive Server
+  Enterprise; no pricing information shown, only 'Request a meeting' and 'Try now' calls to action.
+plan_count: 0
+plans: []
