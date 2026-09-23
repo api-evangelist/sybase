@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Sybase ASE REST Backups Databases API
+  title: Sybase ASE REST Databases API
   description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
   version: '16.0'
   contact:
@@ -114,22 +114,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: The name of the database within the SAP ASE server.
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     DatabaseCreateRequest:
       type: object
       description: Request body for creating a new database on the SAP ASE server.
@@ -157,19 +155,6 @@ components:
           type: number
           format: double
           description: The initial size of the transaction log in megabytes.
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
     Database:
       type: object
       description: Represents a database within a SAP ASE server including its configuration and space usage.
@@ -208,6 +193,21 @@ components:
           type: string
           format: date-time
           description: Timestamp when the database was created.
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: The name of the database within the SAP ASE server.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

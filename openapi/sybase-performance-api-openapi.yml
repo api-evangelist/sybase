@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Sybase ASE REST Backups Performance API
+  title: Sybase ASE REST Performance API
   description: REST API for SAP Adaptive Server Enterprise (ASE) administration and monitoring. Provides programmatic access to server configuration, database management, performance monitoring, user administration, and backup operations for SAP ASE database instances. SAP ASE is a high-performance relational database management system designed for transaction-based enterprise applications.
   version: '16.0'
   contact:
@@ -106,42 +106,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
   schemas:
-    LockMetrics:
+    Error:
       type: object
-      description: Lock management statistics for the SAP ASE server including contention and deadlock information.
+      description: Standard error response returned when an API request fails.
       properties:
-        serverId:
+        code:
           type: string
-          description: Unique identifier of the server.
-        timestamp:
+          description: A machine-readable error code.
+        message:
           type: string
-          format: date-time
-          description: Timestamp when metrics were captured.
-        totalLockRequests:
-          type: integer
-          description: Total number of lock requests since last reset.
-        lockWaits:
-          type: integer
-          description: Number of times a task had to wait for a lock.
-        deadlocks:
-          type: integer
-          description: Number of deadlock occurrences.
-        lockPromotions:
-          type: integer
-          description: Number of lock escalation events.
-        avgLockWaitTimeMs:
-          type: number
-          format: double
-          description: Average lock wait time in milliseconds.
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     CacheMetrics:
       type: object
       description: Data cache and procedure cache performance statistics for the SAP ASE server.
@@ -182,19 +160,33 @@ components:
                 type: number
                 format: double
                 description: Space currently used in this cache in megabytes.
-    Error:
+    LockMetrics:
       type: object
-      description: Standard error response returned when an API request fails.
+      description: Lock management statistics for the SAP ASE server including contention and deadlock information.
       properties:
-        code:
+        serverId:
           type: string
-          description: A machine-readable error code.
-        message:
+          description: Unique identifier of the server.
+        timestamp:
           type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
+          format: date-time
+          description: Timestamp when metrics were captured.
+        totalLockRequests:
+          type: integer
+          description: Total number of lock requests since last reset.
+        lockWaits:
+          type: integer
+          description: Number of times a task had to wait for a lock.
+        deadlocks:
+          type: integer
+          description: Number of deadlock occurrences.
+        lockPromotions:
+          type: integer
+          description: Number of lock escalation events.
+        avgLockWaitTimeMs:
+          type: number
+          format: double
+          description: Average lock wait time in milliseconds.
     PerformanceMetrics:
       type: object
       description: Comprehensive performance metrics for a SAP ASE server including CPU, memory, disk, and network statistics.
@@ -236,6 +228,14 @@ components:
         blockedProcesses:
           type: integer
           description: Number of processes currently waiting on locks.
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1,13 +1,7 @@
 {
   "provider": "sybase",
   "sources": [
-    "sybase-backups-api-openapi.yml",
-    "sybase-configuration-api-openapi.yml",
-    "sybase-databases-api-openapi.yml",
-    "sybase-devices-api-openapi.yml",
-    "sybase-performance-api-openapi.yml",
-    "sybase-servers-api-openapi.yml",
-    "sybase-users-api-openapi.yml"
+    "_original/sybase-ase-rest-api-openapi.yml"
   ],
   "outputs": [
     "sybase-backups-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sybase-ase-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "sybase-backups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-databases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-performance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-servers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sybase-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
