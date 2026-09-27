@@ -92,31 +92,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BackupCreateRequest:
-      type: object
-      description: Request body for initiating a database backup operation.
-      required:
-      - databaseName
-      - type
-      - deviceName
-      properties:
-        databaseName:
-          type: string
-          description: The name of the database to back up.
-        type:
-          type: string
-          description: The type of backup to perform.
-          enum:
-          - full
-          - transaction_log
-          - incremental
-        deviceName:
-          type: string
-          description: The backup device or file path to write to.
-        compress:
-          type: boolean
-          description: Whether to compress the backup.
-          default: false
     Backup:
       type: object
       description: Represents a database backup operation on the SAP ASE server.
@@ -157,6 +132,31 @@ components:
         deviceName:
           type: string
           description: The backup device or file path used.
+    BackupCreateRequest:
+      type: object
+      description: Request body for initiating a database backup operation.
+      required:
+      - databaseName
+      - type
+      - deviceName
+      properties:
+        databaseName:
+          type: string
+          description: The name of the database to back up.
+        type:
+          type: string
+          description: The type of backup to perform.
+          enum:
+          - full
+          - transaction_log
+          - incremental
+        deviceName:
+          type: string
+          description: The backup device or file path to write to.
+        compress:
+          type: boolean
+          description: Whether to compress the backup.
+          default: false
     Error:
       type: object
       description: Standard error response returned when an API request fails.

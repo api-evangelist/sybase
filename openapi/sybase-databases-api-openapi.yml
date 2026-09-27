@@ -114,6 +114,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: The name of the database within the SAP ASE server.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
@@ -128,33 +143,6 @@ components:
         details:
           type: string
           description: Additional details about the error.
-    DatabaseCreateRequest:
-      type: object
-      description: Request body for creating a new database on the SAP ASE server.
-      required:
-      - name
-      - deviceName
-      - sizeMB
-      properties:
-        name:
-          type: string
-          description: The name for the new database.
-          maxLength: 30
-        deviceName:
-          type: string
-          description: The name of the database device for data storage.
-        sizeMB:
-          type: number
-          format: double
-          description: The initial size of the database in megabytes.
-          minimum: 2
-        logDeviceName:
-          type: string
-          description: The name of the device for the transaction log.
-        logSizeMB:
-          type: number
-          format: double
-          description: The initial size of the transaction log in megabytes.
     Database:
       type: object
       description: Represents a database within a SAP ASE server including its configuration and space usage.
@@ -193,21 +181,33 @@ components:
           type: string
           format: date-time
           description: Timestamp when the database was created.
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: The name of the database within the SAP ASE server.
-      schema:
-        type: string
+    DatabaseCreateRequest:
+      type: object
+      description: Request body for creating a new database on the SAP ASE server.
+      required:
+      - name
+      - deviceName
+      - sizeMB
+      properties:
+        name:
+          type: string
+          description: The name for the new database.
+          maxLength: 30
+        deviceName:
+          type: string
+          description: The name of the database device for data storage.
+        sizeMB:
+          type: number
+          format: double
+          description: The initial size of the database in megabytes.
+          minimum: 2
+        logDeviceName:
+          type: string
+          description: The name of the device for the transaction log.
+        logSizeMB:
+          type: number
+          format: double
+          description: The initial size of the transaction log in megabytes.
   securitySchemes:
     basicAuth:
       type: http

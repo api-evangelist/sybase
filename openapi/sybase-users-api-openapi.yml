@@ -85,6 +85,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
   schemas:
     Login:
       type: object
@@ -151,14 +159,6 @@ components:
         details:
           type: string
           description: Additional details about the error.
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
