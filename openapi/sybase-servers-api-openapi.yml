@@ -107,41 +107,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ServerStatus:
+    Error:
       type: object
-      description: Current operational status and resource utilization metrics for a SAP ASE server.
+      description: Standard error response returned when an API request fails.
       properties:
-        serverId:
+        code:
           type: string
-          description: Unique identifier of the server.
-        status:
+          description: A machine-readable error code.
+        message:
           type: string
-          description: Current operational status.
-        uptime:
-          type: integer
-          description: Server uptime in seconds since last restart.
-        activeConnections:
-          type: integer
-          description: Number of currently active user connections.
-        maxConnections:
-          type: integer
-          description: Maximum number of configured user connections.
-        cpuUtilization:
-          type: number
-          format: double
-          description: Current CPU utilization percentage.
-        memoryUsageMB:
-          type: number
-          format: double
-          description: Current memory usage in megabytes.
-        totalMemoryMB:
-          type: number
-          format: double
-          description: Total memory allocated to the server in megabytes.
-        timestamp:
+          description: A human-readable error message.
+        details:
           type: string
-          format: date-time
-          description: Timestamp when the status was captured.
+          description: Additional details about the error.
     Server:
       type: object
       description: Represents a SAP ASE server instance with its configuration and status information.
@@ -185,19 +163,41 @@ components:
         platformDescription:
           type: string
           description: The operating system platform description.
-    Error:
+    ServerStatus:
       type: object
-      description: Standard error response returned when an API request fails.
+      description: Current operational status and resource utilization metrics for a SAP ASE server.
       properties:
-        code:
+        serverId:
           type: string
-          description: A machine-readable error code.
-        message:
+          description: Unique identifier of the server.
+        status:
           type: string
-          description: A human-readable error message.
-        details:
+          description: Current operational status.
+        uptime:
+          type: integer
+          description: Server uptime in seconds since last restart.
+        activeConnections:
+          type: integer
+          description: Number of currently active user connections.
+        maxConnections:
+          type: integer
+          description: Maximum number of configured user connections.
+        cpuUtilization:
+          type: number
+          format: double
+          description: Current CPU utilization percentage.
+        memoryUsageMB:
+          type: number
+          format: double
+          description: Current memory usage in megabytes.
+        totalMemoryMB:
+          type: number
+          format: double
+          description: Total memory allocated to the server in megabytes.
+        timestamp:
           type: string
-          description: Additional details about the error.
+          format: date-time
+          description: Timestamp when the status was captured.
   parameters:
     serverId:
       name: serverId

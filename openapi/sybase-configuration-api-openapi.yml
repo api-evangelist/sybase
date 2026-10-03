@@ -105,6 +105,40 @@ components:
                 description: Parameters within this group.
                 items:
                   $ref: '#/components/schemas/ConfigParameter'
+    ConfigurationUpdateRequest:
+      type: object
+      description: Request body for updating server configuration parameters.
+      required:
+      - parameters
+      properties:
+        parameters:
+          type: array
+          description: List of configuration parameters to update.
+          items:
+            type: object
+            required:
+            - name
+            - value
+            properties:
+              name:
+                type: string
+                description: The configuration parameter name.
+              value:
+                type: string
+                description: The new value to set.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     ConfigParameter:
       type: object
       description: A single server configuration parameter.
@@ -130,40 +164,6 @@ components:
         requiresRestart:
           type: boolean
           description: Whether changing this parameter requires a server restart.
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
-    ConfigurationUpdateRequest:
-      type: object
-      description: Request body for updating server configuration parameters.
-      required:
-      - parameters
-      properties:
-        parameters:
-          type: array
-          description: List of configuration parameters to update.
-          items:
-            type: object
-            required:
-            - name
-            - value
-            properties:
-              name:
-                type: string
-                description: The configuration parameter name.
-              value:
-                type: string
-                description: The new value to set.
   parameters:
     serverId:
       name: serverId
