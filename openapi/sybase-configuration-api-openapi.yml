@@ -86,7 +86,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
   schemas:
+    ConfigParameter:
+      type: object
+      description: A single server configuration parameter.
+      properties:
+        name:
+          type: string
+          description: The name of the configuration parameter.
+        runValue:
+          type: string
+          description: The current running value.
+        configValue:
+          type: string
+          description: The configured value that takes effect on restart.
+        defaultValue:
+          type: string
+          description: The default value for this parameter.
+        minimumValue:
+          type: string
+          description: The minimum allowed value.
+        maximumValue:
+          type: string
+          description: The maximum allowed value.
+        requiresRestart:
+          type: boolean
+          description: Whether changing this parameter requires a server restart.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     Configuration:
       type: object
       description: Server configuration parameters organized by group, equivalent to sp_configure output.
@@ -126,52 +172,6 @@ components:
               value:
                 type: string
                 description: The new value to set.
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
-    ConfigParameter:
-      type: object
-      description: A single server configuration parameter.
-      properties:
-        name:
-          type: string
-          description: The name of the configuration parameter.
-        runValue:
-          type: string
-          description: The current running value.
-        configValue:
-          type: string
-          description: The configured value that takes effect on restart.
-        defaultValue:
-          type: string
-          description: The default value for this parameter.
-        minimumValue:
-          type: string
-          description: The minimum allowed value.
-        maximumValue:
-          type: string
-          description: The maximum allowed value.
-        requiresRestart:
-          type: boolean
-          description: Whether changing this parameter requires a server restart.
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -106,6 +106,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    serverId:
+      name: serverId
+      in: path
+      required: true
+      description: The unique identifier of the SAP ASE server instance.
+      schema:
+        type: string
   schemas:
     PerformanceMetrics:
       type: object
@@ -148,6 +156,19 @@ components:
         blockedProcesses:
           type: integer
           description: Number of processes currently waiting on locks.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     CacheMetrics:
       type: object
       description: Data cache and procedure cache performance statistics for the SAP ASE server.
@@ -188,19 +209,6 @@ components:
                 type: number
                 format: double
                 description: Space currently used in this cache in megabytes.
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
     LockMetrics:
       type: object
       description: Lock management statistics for the SAP ASE server including contention and deadlock information.
@@ -228,14 +236,6 @@ components:
           type: number
           format: double
           description: Average lock wait time in milliseconds.
-  parameters:
-    serverId:
-      name: serverId
-      in: path
-      required: true
-      description: The unique identifier of the SAP ASE server instance.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

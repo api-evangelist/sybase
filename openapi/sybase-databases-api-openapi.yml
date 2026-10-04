@@ -153,6 +153,19 @@ components:
           type: string
           format: date-time
           description: Timestamp when the database was created.
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     DatabaseCreateRequest:
       type: object
       description: Request body for creating a new database on the SAP ASE server.
@@ -180,19 +193,6 @@ components:
           type: number
           format: double
           description: The initial size of the transaction log in megabytes.
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
   parameters:
     databaseName:
       name: databaseName
