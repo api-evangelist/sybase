@@ -107,49 +107,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Server:
-      type: object
-      description: Represents a SAP ASE server instance with its configuration and status information.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the server instance.
-        name:
-          type: string
-          description: The configured name of the SAP ASE server.
-        version:
-          type: string
-          description: The SAP ASE version string.
-        status:
-          type: string
-          description: Current operational status of the server.
-          enum:
-          - running
-          - stopped
-          - starting
-          - shutting_down
-          - maintenance
-        host:
-          type: string
-          description: The hostname where the server is running.
-        port:
-          type: integer
-          description: The network port the server is listening on.
-        pageSize:
-          type: integer
-          description: The logical page size in bytes configured for this server.
-          enum:
-          - 2048
-          - 4096
-          - 8192
-          - 16384
-        startTime:
-          type: string
-          format: date-time
-          description: The timestamp when the server was last started.
-        platformDescription:
-          type: string
-          description: The operating system platform description.
     ServerStatus:
       type: object
       description: Current operational status and resource utilization metrics for a SAP ASE server.
@@ -198,6 +155,49 @@ components:
         details:
           type: string
           description: Additional details about the error.
+    Server:
+      type: object
+      description: Represents a SAP ASE server instance with its configuration and status information.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the server instance.
+        name:
+          type: string
+          description: The configured name of the SAP ASE server.
+        version:
+          type: string
+          description: The SAP ASE version string.
+        status:
+          type: string
+          description: Current operational status of the server.
+          enum:
+          - running
+          - stopped
+          - starting
+          - shutting_down
+          - maintenance
+        host:
+          type: string
+          description: The hostname where the server is running.
+        port:
+          type: integer
+          description: The network port the server is listening on.
+        pageSize:
+          type: integer
+          description: The logical page size in bytes configured for this server.
+          enum:
+          - 2048
+          - 4096
+          - 8192
+          - 16384
+        startTime:
+          type: string
+          format: date-time
+          description: The timestamp when the server was last started.
+        platformDescription:
+          type: string
+          description: The operating system platform description.
   parameters:
     serverId:
       name: serverId

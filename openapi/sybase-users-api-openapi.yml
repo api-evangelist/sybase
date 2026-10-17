@@ -86,6 +86,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          description: Additional details about the error.
     LoginCreateRequest:
       type: object
       description: Request body for creating a new server login.
@@ -109,19 +122,6 @@ components:
           description: List of server roles to assign.
           items:
             type: string
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          description: Additional details about the error.
     Login:
       type: object
       description: Represents a server-level login account on the SAP ASE server.
