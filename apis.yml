@@ -78,6 +78,12 @@ apis:
   humanURL: https://help.sap.com/docs/SAP_ASE_SDK
   baseURL: https://{server}:{port}
   tags:
+  - Client Library
+  - Database Connectivity
+  - JDBC
+  - ODBC
+  - SDK
+  tags_raw:
   - Client Libraries
   - Database Connectivity
   - JDBC
